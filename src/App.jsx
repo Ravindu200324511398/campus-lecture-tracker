@@ -1142,9 +1142,9 @@ function Dashboard({ state, stats, gpaStats, streakAndBadges, pendingTodos, note
             </div>
           </div>
           <div className="stat-row">
-            <div className="stat-chip"><span>{stats.totalPresent}</span><small>Present</small></div>
-            <div className="stat-chip"><span>{stats.totalMarked}</span><small>Marked</small></div>
-            <div className="stat-chip"><span>{state.modules.length}</span><small>Modules</small></div>
+            <div className="stat-chip"><span>{stats.totalPresent}</span> <small>Present</small></div>
+            <div className="stat-chip"><span>{stats.totalMarked}</span> <small>Marked</small></div>
+            <div className="stat-chip"><span>{state.modules.length}</span> <small>Modules</small></div>
           </div>
         </div>
 
@@ -2343,10 +2343,42 @@ body { margin: 0; overflow-x: hidden; width: 100vw; }
 .ring-fg.danger { stroke: #ff5c8d; }
 .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .ring-value { font-family: 'JetBrains Mono', monospace; font-size: 34px; font-weight: 700; color: #ffffff; }
-.ring-label { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  margin-top: 14px;
+}
 
-.stat-chip { background: rgba(255, 255, 255, 0.035); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 14px; text-align: center; transition: transform 0.2s ease; }
-.stat-chip:hover { transform: translateY(-2px); }
+.stat-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 8px 12px;
+  text-align: center;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stat-chip:hover {
+  background: rgba(124, 92, 255, 0.12);
+  border-color: rgba(124, 92, 255, 0.3);
+  transform: translateY(-2px);
+}
+.stat-chip span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+}
+.stat-chip small {
+  font-size: 12px;
+  font-weight: 600;
+  color: #94a3b8;
+}
 
 /* Bunk Badge & Module Stats */
 .module-stat-list { display: flex; flex-direction: column; gap: 16px; }
