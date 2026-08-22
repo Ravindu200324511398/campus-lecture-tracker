@@ -64,243 +64,336 @@ const DEGREE_META = {
   AI: { name: "BSc (Hons) in Artificial Intelligence", short: "AI", color: "violet", icon: Cpu },
   IT: { name: "BSc (Hons) in Information Technology", short: "IT", color: "teal", icon: GraduationCap },
   ITM: { name: "BSc (Hons) in IT & Management", short: "IT&M", color: "coral", icon: Layers },
-  CS: { name: "BSc (Hons) in Computer Science", short: "CS", color: "sky", icon: Code2 },
-  SE: { name: "BSc (Hons) in Software Engineering", short: "SE", color: "lime", icon: Terminal },
-  DS: { name: "BSc (Hons) in Data Science", short: "DS", color: "rose", icon: Database },
   CUSTOM: { name: "Other / Custom Degree", short: "Custom", color: "amber", icon: BookOpen },
 };
 
 const CURRICULA = {
   AI: [
-    { id: "AI-L1S1", label: "Level 1 - Semester 1", modules: [
-      mod("CM1210", "Introduction to Intelligent Machines", 3), mod("CM1220", "Fundamentals of Machines", 3),
-      mod("CM1230", "Foundations of Artificial Intelligence", 3), mod("IN1331", "Microcontroller Based System Design", 3),
-      mod("IN1321", "Computer Organization", 3), mod("IN1101", "Programming Fundamentals", 3),
-      mod("IS1011", "English", 2), mod("CM1900", "Intelligent Machines Inspirational Project", 2),
-    ]},
-    { id: "AI-L1S2", label: "Level 1 - Semester 2", modules: [
-      mod("CM1410", "Probability and Statistics", 3), mod("CM1310", "Linear Algebra and Calculus", 3),
-      mod("IN1401", "Fundamentals of Databases", 3), mod("IN1111", "Data Structures and Algorithms I", 3),
-      mod("IN1501", "Data Communication", 3), mod("IN1621", "Web Technologies", 3),
-    ]},
-    { id: "AI-L2S1", label: "Level 2 - Semester 1", modules: [
-      mod("CM2510", "Modern Approach to Artificial Intelligence", 3), mod("IN2311", "Operating Systems", 3),
-      mod("IN2211", "Object-oriented Analysis and Design", 3), mod("IN2201", "Software Engineering", 3),
-      mod("IN2101", "Object-Oriented Programming", 3), mod("IS1101", "Principles of Management", 2),
-      mod("CM2900", "Industry Based AI Software Project", 3),
-    ]},
-    { id: "AI-L2S2", label: "Level 2 - Semester 2", modules: [
-      mod("CM2420", "Statistical Inference", 3), mod("CM2320", "Mathematical Methods", 3),
-      mod("CM2520", "Deductive Reasoning and Logic Programming", 3), mod("IN2111", "Data Structures and Algorithms II", 3),
-      mod("IN2511", "Computer Networks", 3), mod("IN2601", "Computer Graphics", 3), mod("IN2401", "Database Management Systems", 3),
-    ]},
-    { id: "AI-L3S1", label: "Level 3 - Semester 1", modules: [
-      mod("CM3610", "Expert Systems", 3), mod("CM3230", "Automata Theory", 3), mod("CM3710", "Artificial Neural Networks", 3),
-      mod("CM3720", "Machine Learning", 3), mod("CM3810", "Fuzzy Logic", 3), mod("CM3630", "Multi Agent System", 3),
-      mod("IN2321", "Computer Architecture", 3), mod("IS3700", "IT Project Management", 3),
-    ]},
-    { id: "AI-L3S2", label: "Level 3 - Semester 2", modules: [
-      mod("CM3900", "Independent Study in AI", 3), mod("CM3530", "Research Methods", 3),
-      mod("CM3620", "Natural Language Processing", 3), mod("CM3820", "Evolutionary Computing", 3),
-      mod("IS4430", "Social Aspect of IT", 2), mod("IN3410", "Data Mining and Data Warehousing", 3),
-    ]},
-    { id: "AI-L4S1", label: "Level 4 - Semester 1", modules: [
-      mod("CM4650", "Semantic Web & Ontological Modelling", 3), mod("CM4730", "Deep Learning", 3),
-      mod("CM4150", "Recommender Systems", 3), mod("CM4560", "Philosophy of Science", 2),
-      mod("CM4900", "Research Project in AI", 6), mod("IN4630", "Game Theory", 3),
-    ]},
-    { id: "AI-L4S2", label: "Level 4 - Semester 2", modules: [
-      mod("IS4600", "IT Quality Assurance", 3), mod("IS3450", "Business and Entrepreneurship", 3),
-      mod("CM4670", "Quantum Computing", 3), mod("CM4740", "Deep Reinforcement Learning", 3),
-      mod("IN4550", "Cyber Security", 3), mod("IN4770", "Cloud Computing", 3),
-    ]},
+    {
+      id: "AI-L1S1", label: "Level 1 - Semester 1", modules: [
+        mod("CM1210", "Introduction to Intelligent Machines", 3), mod("CM1220", "Fundamentals of Machines", 3),
+        mod("CM1230", "Foundations of Artificial Intelligence", 3), mod("IN1331", "Microcontroller Based System Design", 3),
+        mod("IN1321", "Computer Organization", 3), mod("IN1101", "Programming Fundamentals", 3),
+        mod("IS1011", "English", 2), mod("CM1900", "Intelligent Machines Inspirational Project", 2),
+      ]
+    },
+    {
+      id: "AI-L1S2", label: "Level 1 - Semester 2", modules: [
+        mod("CM1410", "Probability and Statistics", 3), mod("CM1310", "Linear Algebra and Calculus", 3),
+        mod("IN1401", "Fundamentals of Databases", 3), mod("IN1111", "Data Structures and Algorithms I", 3),
+        mod("IN1501", "Data Communication", 3), mod("IN1621", "Web Technologies", 3),
+      ]
+    },
+    {
+      id: "AI-L2S1", label: "Level 2 - Semester 1", modules: [
+        mod("CM2510", "Modern Approach to Artificial Intelligence", 3), mod("IN2311", "Operating Systems", 3),
+        mod("IN2211", "Object-oriented Analysis and Design", 3), mod("IN2201", "Software Engineering", 3),
+        mod("IN2101", "Object-Oriented Programming", 3), mod("IS1101", "Principles of Management", 2),
+        mod("CM2900", "Industry Based AI Software Project", 3),
+      ]
+    },
+    {
+      id: "AI-L2S2", label: "Level 2 - Semester 2", modules: [
+        mod("CM2420", "Statistical Inference", 3), mod("CM2320", "Mathematical Methods", 3),
+        mod("CM2520", "Deductive Reasoning and Logic Programming", 3), mod("IN2111", "Data Structures and Algorithms II", 3),
+        mod("IN2511", "Computer Networks", 3), mod("IN2601", "Computer Graphics", 3), mod("IN2401", "Database Management Systems", 3),
+      ]
+    },
+    {
+      id: "AI-L3S1", label: "Level 3 - Semester 1", modules: [
+        mod("CM3610", "Expert Systems", 3), mod("CM3230", "Automata Theory", 3), mod("CM3710", "Artificial Neural Networks", 3),
+        mod("CM3720", "Machine Learning", 3), mod("CM3810", "Fuzzy Logic", 3), mod("CM3630", "Multi Agent System", 3),
+        mod("IN2321", "Computer Architecture", 3), mod("IS3700", "IT Project Management", 3),
+      ]
+    },
+    {
+      id: "AI-L3S2", label: "Level 3 - Semester 2", modules: [
+        mod("CM3900", "Independent Study in AI", 3), mod("CM3530", "Research Methods", 3),
+        mod("CM3620", "Natural Language Processing", 3), mod("CM3820", "Evolutionary Computing", 3),
+        mod("IS4430", "Social Aspect of IT", 2), mod("IN3410", "Data Mining and Data Warehousing", 3),
+      ]
+    },
+    {
+      id: "AI-L4S1", label: "Level 4 - Semester 1", modules: [
+        mod("CM4650", "Semantic Web & Ontological Modelling", 3), mod("CM4730", "Deep Learning", 3),
+        mod("CM4150", "Recommender Systems", 3), mod("CM4560", "Philosophy of Science", 2),
+        mod("CM4900", "Research Project in AI", 6), mod("IN4630", "Game Theory", 3),
+      ]
+    },
+    {
+      id: "AI-L4S2", label: "Level 4 - Semester 2", modules: [
+        mod("IS4600", "IT Quality Assurance", 3), mod("IS3450", "Business and Entrepreneurship", 3),
+        mod("CM4670", "Quantum Computing", 3), mod("CM4740", "Deep Reinforcement Learning", 3),
+        mod("IN4550", "Cyber Security", 3), mod("IN4770", "Cloud Computing", 3),
+      ]
+    },
   ],
   IT: [
-    { id: "IT-L1S1", label: "Level 1 - Semester 1", modules: [
-      mod("CM1111", "Fundamentals of Mathematics", 3), mod("IN1311", "Digital System Design", 3),
-      mod("IN1101", "Programming Fundamentals", 3), mod("IN1321", "Computer Organization", 3),
-      mod("IN1611", "Multimedia Technologies", 3), mod("IN1901", "Microcontroller Based Project", 3),
-      mod("IS1011", "English", 2),
-    ]},
-    { id: "IT-L1S2", label: "Level 1 - Semester 2", modules: [
-      mod("CM1131", "Elements of Probability and Statistics", 3), mod("IN1401", "Fundamentals of Databases", 3),
-      mod("IN1501", "Data Communication", 3), mod("IN1111", "Data Structures and Algorithms 1", 3),
-      mod("IN1621", "Web Technologies", 3), mod("IS1101", "Principles of Management", 2),
-    ]},
-    { id: "IT-L2S1", label: "Level 2 - Semester 1", modules: [
-      mod("CM2131", "Essentials of Mathematical Methods", 3), mod("IN2101", "Object Oriented Programming", 3),
-      mod("IN2211", "Object-Oriented Analysis and Design", 3), mod("IN2201", "Software Engineering", 3),
-      mod("IN2321", "Computer Architecture", 3), mod("IN2311", "Operating System", 3),
-    ]},
-    { id: "IT-L2S2", label: "Level 2 - Semester 2", modules: [
-      mod("CM2111", "Statistical Inference", 3), mod("IN2601", "Computer Graphics", 3),
-      mod("IN2111", "Data Structures and Algorithms II", 3), mod("IN2511", "Computer Networks", 3),
-      mod("IN2401", "Database Management Systems", 3), mod("IS2211", "Fundamentals of Business Economics", 2),
-    ]},
-    { id: "IT-L3S1", label: "Level 3 - Semester 1", modules: [
-      mod("CM3311", "Artificial Intelligence", 3), mod("CM3211", "Automata Theory", 3),
-      mod("IN3111", "Network Programming", 3), mod("IN3101", "Enterprise Application Development", 3),
-      mod("IN3700", "Human Computer Interaction", 3), mod("IS3610", "Management Information Systems", 3),
-    ]},
-    { id: "IT-L3S2", label: "Level 3 - Semester 2", modules: [
-      mod("CM3321", "Logic Programming & AI Systems", 3), mod("IN3901", "Independent Study", 3),
-      mod("IN3910", "Research Methodology", 3), mod("IN3410", "Data Mining and Warehousing", 3),
-      mod("IS3450", "Business and Entrepreneurship", 3), mod("IN3001", "Industrial Training", 6),
-    ]},
-    { id: "IT-L4S1", label: "Level 4 - Semester 1", modules: [
-      mod("CM4371", "Machine Learning & Pattern Recognition", 3), mod("IN4911", "Comprehensive Group Project", 6),
-      mod("IN4210", "Advanced Software Engineering", 3), mod("IS3700", "IT Project Management", 3),
-    ]},
-    { id: "IT-L4S2", label: "Level 4 - Semester 2", modules: [
-      mod("IN4921", "Individual Research Project", 6), mod("IN4770", "Cloud Computing", 3),
-      mod("IN4550", "Cyber Security", 3), mod("IN4740", "UI/UX Engineering", 3),
-    ]},
+    {
+      id: "IT-L1S1", label: "Level 1 - Semester 1", modules: [
+        mod("CM1111", "Fundamentals of Mathematics", 3), mod("IN1311", "Digital System Design", 3),
+        mod("IN1101", "Programming Fundamentals", 3), mod("IN1321", "Computer Organization", 3),
+        mod("IN1611", "Multimedia Technologies", 3), mod("IN1901", "Microcontroller Based Project", 3),
+        mod("IS1011", "English", 2),
+      ]
+    },
+    {
+      id: "IT-L1S2", label: "Level 1 - Semester 2", modules: [
+        mod("CM1131", "Elements of Probability and Statistics", 3), mod("IN1401", "Fundamentals of Databases", 3),
+        mod("IN1501", "Data Communication", 3), mod("IN1111", "Data Structures and Algorithms 1", 3),
+        mod("IN1621", "Web Technologies", 3), mod("IS1101", "Principles of Management", 2),
+      ]
+    },
+    {
+      id: "IT-L2S1", label: "Level 2 - Semester 1", modules: [
+        mod("CM2131", "Essentials of Mathematical Methods", 3), mod("IN2101", "Object Oriented Programming", 3),
+        mod("IN2211", "Object-Oriented Analysis and Design", 3), mod("IN2201", "Software Engineering", 3),
+        mod("IN2321", "Computer Architecture", 3), mod("IN2311", "Operating System", 3),
+      ]
+    },
+    {
+      id: "IT-L2S2", label: "Level 2 - Semester 2", modules: [
+        mod("CM2111", "Statistical Inference", 3), mod("IN2601", "Computer Graphics", 3),
+        mod("IN2111", "Data Structures and Algorithms II", 3), mod("IN2511", "Computer Networks", 3),
+        mod("IN2401", "Database Management Systems", 3), mod("IS2211", "Fundamentals of Business Economics", 2),
+      ]
+    },
+    {
+      id: "IT-L3S1", label: "Level 3 - Semester 1", modules: [
+        mod("CM3311", "Artificial Intelligence", 3), mod("CM3211", "Automata Theory", 3),
+        mod("IN3111", "Network Programming", 3), mod("IN3101", "Enterprise Application Development", 3),
+        mod("IN3700", "Human Computer Interaction", 3), mod("IS3610", "Management Information Systems", 3),
+      ]
+    },
+    {
+      id: "IT-L3S2", label: "Level 3 - Semester 2", modules: [
+        mod("CM3321", "Logic Programming & AI Systems", 3), mod("IN3901", "Independent Study", 3),
+        mod("IN3910", "Research Methodology", 3), mod("IN3410", "Data Mining and Warehousing", 3),
+        mod("IS3450", "Business and Entrepreneurship", 3), mod("IN3001", "Industrial Training", 6),
+      ]
+    },
+    {
+      id: "IT-L4S1", label: "Level 4 - Semester 1", modules: [
+        mod("CM4371", "Machine Learning & Pattern Recognition", 3), mod("IN4911", "Comprehensive Group Project", 6),
+        mod("IN4210", "Advanced Software Engineering", 3), mod("IS3700", "IT Project Management", 3),
+      ]
+    },
+    {
+      id: "IT-L4S2", label: "Level 4 - Semester 2", modules: [
+        mod("IN4921", "Individual Research Project", 6), mod("IN4770", "Cloud Computing", 3),
+        mod("IN4550", "Cyber Security", 3), mod("IN4740", "UI/UX Engineering", 3),
+      ]
+    },
   ],
   ITM: [
-    { id: "ITM-L1S1", label: "Level 1 - Semester 1", modules: [
-      mod("IN1120", "Structured Programming I", 3), mod("IN1301", "Digital Systems and Digital Computers", 3),
-      mod("IN1601", "Multimedia Technologies and Web Design", 3), mod("IS1901", "Microcontroller ICT Project", 2),
-      mod("IS1101", "Principles of Management", 3), mod("CM1121", "Essentials of Mathematics", 3), mod("IS1011", "English", 2),
-    ]},
-    { id: "ITM-L1S2", label: "Level 1 - Semester 2", modules: [
-      mod("IN1130", "Structured Programming II", 3), mod("IN1401", "Fundamentals of Databases", 3),
-      mod("IS1110", "Business Foundation", 3), mod("IS1910", "Industry Reconnaissance and Engagement", 2),
-      mod("CM1131", "Elements of Probability and Statistics", 3),
-    ]},
-    { id: "ITM-L2S1", label: "Level 2 - Semester 1", modules: [
-      mod("IN2110", "Fundamentals of OOP", 3), mod("IN2120", "Web Programming", 3),
-      mod("IN2201", "Software Engineering", 3), mod("IS2901", "Software Development Project", 3),
-      mod("IN2211", "OOAD", 3), mod("IS2200", "Principles of Marketing", 3),
-    ]},
-    { id: "ITM-L2S2", label: "Level 2 - Semester 2", modules: [
-      mod("IN2610", "Graphic Design and Development", 3), mod("IN2410", "Database Systems", 3),
-      mod("IN2301", "Essentials of Computer Architecture", 3), mod("IN2121", "Data Structures and Algorithms I", 3),
-      mod("IS2310", "Business Law and Taxation", 3), mod("IS2230", "Economic Applications", 3),
-    ]},
-    { id: "ITM-L3S1", label: "Level 3 - Semester 1", modules: [
-      mod("IN3311", "Operating Systems", 3), mod("IN3530", "Data Communication & Computer Networks", 3),
-      mod("CM3311", "Artificial Intelligence", 3), mod("IS3610", "Management Information Systems", 3),
-      mod("IS3700", "IT Project Management", 3),
-    ]},
-    { id: "ITM-L3S2", label: "Level 3 - Semester 2", modules: [
-      mod("IS3001", "Scientific Communication", 2), mod("IS3500", "Research Methodology", 3),
-      mod("IN3410", "Data Mining and Data Warehousing", 3), mod("IS3000", "Industrial Training", 6),
-    ]},
-    { id: "ITM-L4S1", label: "Level 4 - Semester 1", modules: [
-      mod("IS4650", "Software Management", 3), mod("IS4600", "IT Quality Assurance", 3),
-      mod("IS4440", "Professional Practice", 2), mod("IS4660", "Corporate Information Security", 3),
-    ]},
-    { id: "ITM-L4S2", label: "Level 4 - Semester 2", modules: [
-      mod("IS4990", "Comprehensive Group Project", 6), mod("IN4740", "UI/UX Engineering", 3),
-      mod("IN4560", "Information Security", 3), mod("IN4770", "Cloud Computing", 3),
-    ]},
+    {
+      id: "ITM-L1S1", label: "Level 1 - Semester 1", modules: [
+        mod("IN1120", "Structured Programming I", 3), mod("IN1301", "Digital Systems and Digital Computers", 3),
+        mod("IN1601", "Multimedia Technologies and Web Design", 3), mod("IS1901", "Microcontroller ICT Project", 2),
+        mod("IS1101", "Principles of Management", 3), mod("CM1121", "Essentials of Mathematics", 3), mod("IS1011", "English", 2),
+      ]
+    },
+    {
+      id: "ITM-L1S2", label: "Level 1 - Semester 2", modules: [
+        mod("IN1130", "Structured Programming II", 3), mod("IN1401", "Fundamentals of Databases", 3),
+        mod("IS1110", "Business Foundation", 3), mod("IS1910", "Industry Reconnaissance and Engagement", 2),
+        mod("CM1131", "Elements of Probability and Statistics", 3),
+      ]
+    },
+    {
+      id: "ITM-L2S1", label: "Level 2 - Semester 1", modules: [
+        mod("IN2110", "Fundamentals of OOP", 3), mod("IN2120", "Web Programming", 3),
+        mod("IN2201", "Software Engineering", 3), mod("IS2901", "Software Development Project", 3),
+        mod("IN2211", "OOAD", 3), mod("IS2200", "Principles of Marketing", 3),
+      ]
+    },
+    {
+      id: "ITM-L2S2", label: "Level 2 - Semester 2", modules: [
+        mod("IN2610", "Graphic Design and Development", 3), mod("IN2410", "Database Systems", 3),
+        mod("IN2301", "Essentials of Computer Architecture", 3), mod("IN2121", "Data Structures and Algorithms I", 3),
+        mod("IS2310", "Business Law and Taxation", 3), mod("IS2230", "Economic Applications", 3),
+      ]
+    },
+    {
+      id: "ITM-L3S1", label: "Level 3 - Semester 1", modules: [
+        mod("IN3311", "Operating Systems", 3), mod("IN3530", "Data Communication & Computer Networks", 3),
+        mod("CM3311", "Artificial Intelligence", 3), mod("IS3610", "Management Information Systems", 3),
+        mod("IS3700", "IT Project Management", 3),
+      ]
+    },
+    {
+      id: "ITM-L3S2", label: "Level 3 - Semester 2", modules: [
+        mod("IS3001", "Scientific Communication", 2), mod("IS3500", "Research Methodology", 3),
+        mod("IN3410", "Data Mining and Data Warehousing", 3), mod("IS3000", "Industrial Training", 6),
+      ]
+    },
+    {
+      id: "ITM-L4S1", label: "Level 4 - Semester 1", modules: [
+        mod("IS4650", "Software Management", 3), mod("IS4600", "IT Quality Assurance", 3),
+        mod("IS4440", "Professional Practice", 2), mod("IS4660", "Corporate Information Security", 3),
+      ]
+    },
+    {
+      id: "ITM-L4S2", label: "Level 4 - Semester 2", modules: [
+        mod("IS4990", "Comprehensive Group Project", 6), mod("IN4740", "UI/UX Engineering", 3),
+        mod("IN4560", "Information Security", 3), mod("IN4770", "Cloud Computing", 3),
+      ]
+    },
   ],
   CS: [
-    { id: "CS-L1S1", label: "Level 1 - Semester 1", modules: [
-      mod("CS1010", "Discrete Mathematics", 3), mod("CS1020", "Programming Fundamentals", 3),
-      mod("CS1030", "Computer Systems Architecture", 3), mod("CS1040", "Linear Algebra for Computing", 3),
-      mod("IS1011", "Academic English", 2),
-    ]},
-    { id: "CS-L1S2", label: "Level 1 - Semester 2", modules: [
-      mod("CS1110", "Data Structures & Algorithms 1", 3), mod("CS1120", "Object-Oriented Programming", 3),
-      mod("CS1130", "Multivariable Calculus", 3), mod("CS1140", "Probability & Statistics", 3),
-      mod("CS1150", "Database Systems Fundamentals", 3),
-    ]},
-    { id: "CS-L2S1", label: "Level 2 - Semester 1", modules: [
-      mod("CS2010", "Data Structures & Algorithms 2", 3), mod("CS2020", "Operating Systems Engineering", 3),
-      mod("CS2030", "Advanced Computer Architecture", 3), mod("CS2040", "Software Engineering Principles", 3),
-    ]},
-    { id: "CS-L2S2", label: "Level 2 - Semester 2", modules: [
-      mod("CS2110", "Computer Networks & Protocols", 3), mod("CS2120", "Theory of Computation & Automata", 3),
-      mod("CS2130", "Full-Stack Web Engineering", 3), mod("CS2140", "Systems Programming in C/C++", 3),
-    ]},
-    { id: "CS-L3S1", label: "Level 3 - Semester 1", modules: [
-      mod("CS3010", "Artificial Intelligence & Logic", 3), mod("CS3020", "Compiler Construction & Design", 3),
-      mod("CS3030", "Database Management Systems", 3), mod("CS3040", "Parallel & Distributed Computing", 3),
-    ]},
-    { id: "CS-L3S2", label: "Level 3 - Semester 2", modules: [
-      mod("CS3110", "Software Architecture & Design Patterns", 3), mod("CS3120", "Computer & Network Security", 3),
-      mod("CS3130", "Research Methods in CS", 3), mod("CS3000", "Industrial Internship", 6),
-    ]},
-    { id: "CS-L4S1", label: "Level 4 - Semester 1", modules: [
-      mod("CS4010", "Machine Learning & Pattern Recognition", 3), mod("CS4020", "Distributed Systems Engineering", 3),
-      mod("CS4900", "Capstone Research Project I", 6), mod("CS4030", "Computer Vision & Image Processing", 3),
-    ]},
-    { id: "CS-L4S2", label: "Level 4 - Semester 2", modules: [
-      mod("CS4110", "Cloud Native Infrastructure", 3), mod("CS4120", "Deep Learning Architectures", 3),
-      mod("CS4910", "Capstone Research Project II", 6), mod("CS4130", "Natural Language Processing", 3),
-    ]},
+    {
+      id: "CS-L1S1", label: "Level 1 - Semester 1", modules: [
+        mod("CS1010", "Discrete Mathematics", 3), mod("CS1020", "Programming Fundamentals", 3),
+        mod("CS1030", "Computer Systems Architecture", 3), mod("CS1040", "Linear Algebra for Computing", 3),
+        mod("IS1011", "Academic English", 2),
+      ]
+    },
+    {
+      id: "CS-L1S2", label: "Level 1 - Semester 2", modules: [
+        mod("CS1110", "Data Structures & Algorithms 1", 3), mod("CS1120", "Object-Oriented Programming", 3),
+        mod("CS1130", "Multivariable Calculus", 3), mod("CS1140", "Probability & Statistics", 3),
+        mod("CS1150", "Database Systems Fundamentals", 3),
+      ]
+    },
+    {
+      id: "CS-L2S1", label: "Level 2 - Semester 1", modules: [
+        mod("CS2010", "Data Structures & Algorithms 2", 3), mod("CS2020", "Operating Systems Engineering", 3),
+        mod("CS2030", "Advanced Computer Architecture", 3), mod("CS2040", "Software Engineering Principles", 3),
+      ]
+    },
+    {
+      id: "CS-L2S2", label: "Level 2 - Semester 2", modules: [
+        mod("CS2110", "Computer Networks & Protocols", 3), mod("CS2120", "Theory of Computation & Automata", 3),
+        mod("CS2130", "Full-Stack Web Engineering", 3), mod("CS2140", "Systems Programming in C/C++", 3),
+      ]
+    },
+    {
+      id: "CS-L3S1", label: "Level 3 - Semester 1", modules: [
+        mod("CS3010", "Artificial Intelligence & Logic", 3), mod("CS3020", "Compiler Construction & Design", 3),
+        mod("CS3030", "Database Management Systems", 3), mod("CS3040", "Parallel & Distributed Computing", 3),
+      ]
+    },
+    {
+      id: "CS-L3S2", label: "Level 3 - Semester 2", modules: [
+        mod("CS3110", "Software Architecture & Design Patterns", 3), mod("CS3120", "Computer & Network Security", 3),
+        mod("CS3130", "Research Methods in CS", 3), mod("CS3000", "Industrial Internship", 6),
+      ]
+    },
+    {
+      id: "CS-L4S1", label: "Level 4 - Semester 1", modules: [
+        mod("CS4010", "Machine Learning & Pattern Recognition", 3), mod("CS4020", "Distributed Systems Engineering", 3),
+        mod("CS4900", "Capstone Research Project I", 6), mod("CS4030", "Computer Vision & Image Processing", 3),
+      ]
+    },
+    {
+      id: "CS-L4S2", label: "Level 4 - Semester 2", modules: [
+        mod("CS4110", "Cloud Native Infrastructure", 3), mod("CS4120", "Deep Learning Architectures", 3),
+        mod("CS4910", "Capstone Research Project II", 6), mod("CS4130", "Natural Language Processing", 3),
+      ]
+    },
   ],
   SE: [
-    { id: "SE-L1S1", label: "Level 1 - Semester 1", modules: [
-      mod("SE1010", "Software Engineering Fundamentals", 3), mod("SE1020", "Programming I (Python/Java)", 3),
-      mod("SE1030", "Discrete Mathematics for Software", 3), mod("SE1040", "Web Foundations (HTML/CSS/JS)", 3),
-      mod("IS1011", "Professional Communication", 2),
-    ]},
-    { id: "SE-L1S2", label: "Level 1 - Semester 2", modules: [
-      mod("SE1110", "Programming II (Advanced OOP)", 3), mod("SE1120", "Data Structures & Algorithms", 3),
-      mod("SE1130", "Database Systems Design", 3), mod("SE1140", "UI/UX Design & Prototyping", 3),
-    ]},
-    { id: "SE-L2S1", label: "Level 2 - Semester 1", modules: [
-      mod("SE2010", "Object-Oriented Analysis & Design", 3), mod("SE2020", "Operating Systems Architecture", 3),
-      mod("SE2030", "Algorithm Analysis & Complexity", 3), mod("SE2040", "Software Requirements Engineering", 3),
-    ]},
-    { id: "SE-L2S2", label: "Level 2 - Semester 2", modules: [
-      mod("SE2110", "Software Architecture & Frameworks", 3), mod("SE2120", "Database Engineering & SQL", 3),
-      mod("SE2130", "Computer Networks & APIs", 3), mod("SE2140", "Software Testing & Quality Assurance", 3),
-    ]},
-    { id: "SE-L3S1", label: "Level 3 - Semester 1", modules: [
-      mod("SE3010", "Agile Project Management & Scrum", 3), mod("SE3020", "Enterprise Application Development", 3),
-      mod("SE3030", "DevOps & CI/CD Pipelines", 3), mod("SE3040", "Mobile Application Development", 3),
-    ]},
-    { id: "SE-L3S2", label: "Level 3 - Semester 2", modules: [
-      mod("SE3110", "Software Security & Vulnerability Analysis", 3), mod("SE3120", "Research & Technical Writing", 3),
-      mod("SE3000", "Software Industry Internship", 6),
-    ]},
-    { id: "SE-L4S1", label: "Level 4 - Semester 1", modules: [
-      mod("SE4010", "Cloud Native Software Engineering", 3), mod("SE4020", "Microservices & Distributed Systems", 3),
-      mod("SE4900", "Software Engineering Capstone I", 6),
-    ]},
-    { id: "SE-L4S2", label: "Level 4 - Semester 2", modules: [
-      mod("SE4110", "Software Metrics & Quality Management", 3), mod("SE4120", "High Performance Computing", 3),
-      mod("SE4910", "Software Engineering Capstone II", 6),
-    ]},
+    {
+      id: "SE-L1S1", label: "Level 1 - Semester 1", modules: [
+        mod("SE1010", "Software Engineering Fundamentals", 3), mod("SE1020", "Programming I (Python/Java)", 3),
+        mod("SE1030", "Discrete Mathematics for Software", 3), mod("SE1040", "Web Foundations (HTML/CSS/JS)", 3),
+        mod("IS1011", "Professional Communication", 2),
+      ]
+    },
+    {
+      id: "SE-L1S2", label: "Level 1 - Semester 2", modules: [
+        mod("SE1110", "Programming II (Advanced OOP)", 3), mod("SE1120", "Data Structures & Algorithms", 3),
+        mod("SE1130", "Database Systems Design", 3), mod("SE1140", "UI/UX Design & Prototyping", 3),
+      ]
+    },
+    {
+      id: "SE-L2S1", label: "Level 2 - Semester 1", modules: [
+        mod("SE2010", "Object-Oriented Analysis & Design", 3), mod("SE2020", "Operating Systems Architecture", 3),
+        mod("SE2030", "Algorithm Analysis & Complexity", 3), mod("SE2040", "Software Requirements Engineering", 3),
+      ]
+    },
+    {
+      id: "SE-L2S2", label: "Level 2 - Semester 2", modules: [
+        mod("SE2110", "Software Architecture & Frameworks", 3), mod("SE2120", "Database Engineering & SQL", 3),
+        mod("SE2130", "Computer Networks & APIs", 3), mod("SE2140", "Software Testing & Quality Assurance", 3),
+      ]
+    },
+    {
+      id: "SE-L3S1", label: "Level 3 - Semester 1", modules: [
+        mod("SE3010", "Agile Project Management & Scrum", 3), mod("SE3020", "Enterprise Application Development", 3),
+        mod("SE3030", "DevOps & CI/CD Pipelines", 3), mod("SE3040", "Mobile Application Development", 3),
+      ]
+    },
+    {
+      id: "SE-L3S2", label: "Level 3 - Semester 2", modules: [
+        mod("SE3110", "Software Security & Vulnerability Analysis", 3), mod("SE3120", "Research & Technical Writing", 3),
+        mod("SE3000", "Software Industry Internship", 6),
+      ]
+    },
+    {
+      id: "SE-L4S1", label: "Level 4 - Semester 1", modules: [
+        mod("SE4010", "Cloud Native Software Engineering", 3), mod("SE4020", "Microservices & Distributed Systems", 3),
+        mod("SE4900", "Software Engineering Capstone I", 6),
+      ]
+    },
+    {
+      id: "SE-L4S2", label: "Level 4 - Semester 2", modules: [
+        mod("SE4110", "Software Metrics & Quality Management", 3), mod("SE4120", "High Performance Computing", 3),
+        mod("SE4910", "Software Engineering Capstone II", 6),
+      ]
+    },
   ],
   DS: [
-    { id: "DS-L1S1", label: "Level 1 - Semester 1", modules: [
-      mod("DS1010", "Introduction to Data Science", 3), mod("DS1020", "Programming for Data Science (Python)", 3),
-      mod("DS1030", "Calculus & Analytical Geometry", 3), mod("DS1040", "Linear Algebra for Data Science", 3),
-      mod("IS1011", "Technical Communication", 2),
-    ]},
-    { id: "DS-L1S2", label: "Level 1 - Semester 2", modules: [
-      mod("DS1110", "Probability & Mathematical Statistics", 3), mod("DS1120", "Data Structures & File Formats", 3),
-      mod("DS1130", "Database Systems & SQL", 3), mod("DS1140", "R Programming & Exploratory Data Analysis", 3),
-      mod("DS1150", "Data Visualization & Dashboards", 3),
-    ]},
-    { id: "DS-L2S1", label: "Level 2 - Semester 1", modules: [
-      mod("DS2010", "Statistical Inference & Hypothesis Testing", 3), mod("DS2020", "Data Mining & Knowledge Discovery", 3),
-      mod("DS2030", "Applied Econometrics & Regression", 3), mod("DS2040", "Machine Learning I (Supervised)", 3),
-    ]},
-    { id: "DS-L2S2", label: "Level 2 - Semester 2", modules: [
-      mod("DS2110", "Big Data Analytics & Hadoop/Spark", 3), mod("DS2120", "Data Engineering & ETL Pipelines", 3),
-      mod("DS2130", "Mathematical Optimization", 3), mod("DS2140", "Time Series Analysis & Forecasting", 3),
-    ]},
-    { id: "DS-L3S1", label: "Level 3 - Semester 1", modules: [
-      mod("DS3010", "Deep Learning & Neural Networks", 3), mod("DS3020", "Natural Language Processing (NLP)", 3),
-      mod("DS3030", "Feature Engineering & Selection", 3), mod("DS3040", "Business Intelligence & Decision Analytics", 3),
-    ]},
-    { id: "DS-L3S2", label: "Level 3 - Semester 2", modules: [
-      mod("DS3110", "Research Methods in Data Science", 3), mod("DS3120", "Cloud Data Warehousing (Snowflake/BigQuery)", 3),
-      mod("DS3000", "Data Science Industry Internship", 6),
-    ]},
-    { id: "DS-L4S1", label: "Level 4 - Semester 1", modules: [
-      mod("DS4010", "Reinforcement Learning & AI", 3), mod("DS4020", "Computer Vision & Spatial Analytics", 3),
-      mod("DS4900", "Data Science Thesis Project I", 6),
-    ]},
-    { id: "DS-L4S2", label: "Level 4 - Semester 2", modules: [
-      mod("DS4110", "AI Ethics, Bias & Governance", 3), mod("DS4120", "Distributed Processing & MLOps", 3),
-      mod("DS4910", "Data Science Thesis Project II", 6),
-    ]},
+    {
+      id: "DS-L1S1", label: "Level 1 - Semester 1", modules: [
+        mod("DS1010", "Introduction to Data Science", 3), mod("DS1020", "Programming for Data Science (Python)", 3),
+        mod("DS1030", "Calculus & Analytical Geometry", 3), mod("DS1040", "Linear Algebra for Data Science", 3),
+        mod("IS1011", "Technical Communication", 2),
+      ]
+    },
+    {
+      id: "DS-L1S2", label: "Level 1 - Semester 2", modules: [
+        mod("DS1110", "Probability & Mathematical Statistics", 3), mod("DS1120", "Data Structures & File Formats", 3),
+        mod("DS1130", "Database Systems & SQL", 3), mod("DS1140", "R Programming & Exploratory Data Analysis", 3),
+        mod("DS1150", "Data Visualization & Dashboards", 3),
+      ]
+    },
+    {
+      id: "DS-L2S1", label: "Level 2 - Semester 1", modules: [
+        mod("DS2010", "Statistical Inference & Hypothesis Testing", 3), mod("DS2020", "Data Mining & Knowledge Discovery", 3),
+        mod("DS2030", "Applied Econometrics & Regression", 3), mod("DS2040", "Machine Learning I (Supervised)", 3),
+      ]
+    },
+    {
+      id: "DS-L2S2", label: "Level 2 - Semester 2", modules: [
+        mod("DS2110", "Big Data Analytics & Hadoop/Spark", 3), mod("DS2120", "Data Engineering & ETL Pipelines", 3),
+        mod("DS2130", "Mathematical Optimization", 3), mod("DS2140", "Time Series Analysis & Forecasting", 3),
+      ]
+    },
+    {
+      id: "DS-L3S1", label: "Level 3 - Semester 1", modules: [
+        mod("DS3010", "Deep Learning & Neural Networks", 3), mod("DS3020", "Natural Language Processing (NLP)", 3),
+        mod("DS3030", "Feature Engineering & Selection", 3), mod("DS3040", "Business Intelligence & Decision Analytics", 3),
+      ]
+    },
+    {
+      id: "DS-L3S2", label: "Level 3 - Semester 2", modules: [
+        mod("DS3110", "Research Methods in Data Science", 3), mod("DS3120", "Cloud Data Warehousing (Snowflake/BigQuery)", 3),
+        mod("DS3000", "Data Science Industry Internship", 6),
+      ]
+    },
+    {
+      id: "DS-L4S1", label: "Level 4 - Semester 1", modules: [
+        mod("DS4010", "Reinforcement Learning & AI", 3), mod("DS4020", "Computer Vision & Spatial Analytics", 3),
+        mod("DS4900", "Data Science Thesis Project I", 6),
+      ]
+    },
+    {
+      id: "DS-L4S2", label: "Level 4 - Semester 2", modules: [
+        mod("DS4110", "AI Ethics, Bias & Governance", 3), mod("DS4120", "Distributed Processing & MLOps", 3),
+        mod("DS4910", "Data Science Thesis Project II", 6),
+      ]
+    },
   ],
 };
 
@@ -648,10 +741,12 @@ export default function App() {
     }
 
     const badges = [
-      { id: "bunk_proof", label: "Bunk Proof", icon: ShieldAlert, earned: state.modules.length > 0 && state.modules.every((m) => {
-        const s = stats.perModule[m.id];
-        return !s || s.marked === 0 || (s.present / s.marked) >= (m.threshold || 80)/100;
-      }), desc: "All modules above target" },
+      {
+        id: "bunk_proof", label: "Bunk Proof", icon: ShieldAlert, earned: state.modules.length > 0 && state.modules.every((m) => {
+          const s = stats.perModule[m.id];
+          return !s || s.marked === 0 || (s.present / s.marked) >= (m.threshold || 80) / 100;
+        }), desc: "All modules above target"
+      },
       { id: "gpa_titan", label: "GPA Titan", icon: Award, earned: gpaStats.gpa !== null && parseFloat(gpaStats.gpa) >= 3.7, desc: "Projected GPA >= 3.7" },
       { id: "iron_scholar", label: "Iron Scholar", icon: Flame, earned: streak >= 5, desc: "5+ Class Attendance Streak" },
       { id: "note_master", label: "Note Master", icon: StickyNote, earned: state.sessions.filter((s) => s.note || (s.topics && s.topics.length)).length >= 5, desc: "Recorded 5+ Lecture Notes" }
@@ -1443,7 +1538,7 @@ function DeadlinesView({ deadlines, modulesById, onAddDeadline, onToggle, onDele
             const mo = modulesById[d.moduleId];
             const due = new Date(d.dueDate);
             const today = new Date();
-            today.setHours(0,0,0,0);
+            today.setHours(0, 0, 0, 0);
             const diffDays = Math.ceil((due - today) / (1000 * 60 * 60 * 24));
             const isOverdue = diffDays < 0 && !d.done;
 
@@ -2237,53 +2332,56 @@ body { position: relative; overflow-x: hidden; overflow-y: auto; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* Header Navigation - Full Screen Width Single Row */
+/* Header Navigation - Responsive Multi-Group Toolbar */
 .header {
-  display: flex; align-items: center; justify-content: space-between; padding: 12px 28px; width: 100%; gap: 14px;
-  background: rgba(10, 13, 28, 0.92); border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(24px); position: sticky; top: 0; z-index: 40; transition: all 0.3s ease; flex-wrap: nowrap;
+  display: flex; align-items: center; justify-content: space-between; padding: 10px 24px; width: 100%; gap: 12px;
+  background: rgba(10, 13, 28, 0.94); border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px); position: sticky; top: 0; z-index: 40; transition: all 0.3s ease; flex-wrap: wrap;
 }
 
-.brand { display: flex; align-items: center; gap: 10px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: #ffffff; flex-shrink: 0; }
+.brand { display: flex; align-items: center; gap: 8px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px; color: #ffffff; flex-shrink: 0; }
 .logo-icon {
-  width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, #7c5cff, #34e5ff);
-  display: flex; align-items: center; justify-content: center; color: #060814; box-shadow: 0 0 16px rgba(124, 92, 255, 0.45);
+  width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(135deg, #7c5cff, #34e5ff);
+  display: flex; align-items: center; justify-content: center; color: #060814; box-shadow: 0 0 14px rgba(124, 92, 255, 0.45);
   transition: transform 0.3s ease;
 }
 .brand:hover .logo-icon { transform: rotate(10deg) scale(1.05); }
 
 .pro-badge {
-  font-size: 10px; font-family: 'JetBrains Mono', monospace; background: rgba(52, 229, 255, 0.15);
-  border: 1px solid rgba(52, 229, 255, 0.4); color: #34e5ff; padding: 2px 6px; border-radius: 6px; vertical-align: middle;
+  font-size: 9.5px; font-family: 'JetBrains Mono', monospace; background: rgba(52, 229, 255, 0.15);
+  border: 1px solid rgba(52, 229, 255, 0.4); color: #34e5ff; padding: 1px 5px; border-radius: 5px; vertical-align: middle;
 }
 
-.navtabs { display: flex; gap: 4px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); padding: 4px; border-radius: 14px; flex-shrink: 1; overflow-x: auto; }
+.navtabs { display: flex; gap: 3px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); padding: 3px; border-radius: 12px; flex-shrink: 1; overflow-x: auto; }
 .tab {
-  display: flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 10px; border: none;
-  background: transparent; color: #94a3b8; font-size: 12.5px; font-weight: 600; cursor: pointer; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); white-space: nowrap;
+  display: flex; align-items: center; gap: 5px; padding: 6px 12px; border-radius: 9px; border: none;
+  background: transparent; color: #94a3b8; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); white-space: nowrap;
 }
 .tab:hover { color: #ffffff; background: rgba(255, 255, 255, 0.05); transform: translateY(-1px); }
-.tab.active { background: linear-gradient(135deg, #7c5cff, #34e5ff); color: #060814; box-shadow: 0 4px 14px rgba(124, 92, 255, 0.35); }
+.tab.active { background: linear-gradient(135deg, #7c5cff, #34e5ff); color: #060814; box-shadow: 0 3px 12px rgba(124, 92, 255, 0.35); }
 
-.undo-redo-toolbar { display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; flex-shrink: 0; }
-.history-group, .action-group { display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+.undo-redo-toolbar { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.history-group, .action-group { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
 
 .mobile-menu-trigger { display: none; }
 
-.theme-toggle { display: flex; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 3px; flex-shrink: 0; }
-.theme-btn { background: none; border: none; color: #94a3b8; padding: 5px 8px; border-radius: 7px; cursor: pointer; display: flex; align-items: center; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
+.theme-toggle { display: flex; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 9px; padding: 2px; flex-shrink: 0; }
+.theme-btn { background: none; border: none; color: #94a3b8; padding: 4px 7px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
 .theme-btn:hover { color: #ffffff; transform: scale(1.1); }
 .theme-btn.active { background: rgba(124, 92, 255, 0.3); color: #34e5ff; }
 
 .history-btn {
-  display: inline-flex; align-items: center; gap: 5px; background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1); color: #cbd5e1; padding: 6px 11px; border-radius: 10px;
-  font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); white-space: nowrap; flex-shrink: 0;
+  display: inline-flex; align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1); color: #cbd5e1; padding: 5px 9px; border-radius: 9px;
+  font-size: 11.5px; font-weight: 600; cursor: pointer; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); white-space: nowrap; flex-shrink: 0;
 }
-.history-btn:hover:not(:disabled) { background: rgba(124, 92, 255, 0.18); border-color: rgba(124, 92, 255, 0.4); color: #ffffff; transform: translateY(-2px); }
+.history-btn:hover:not(:disabled) { background: rgba(124, 92, 255, 0.18); border-color: rgba(124, 92, 255, 0.4); color: #ffffff; transform: translateY(-1px); }
 .history-btn:active:not(:disabled) { transform: scale(0.96); }
 .history-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 .history-btn.glow-border { border-color: rgba(52, 229, 255, 0.4); color: #34e5ff; }
-.history-count { background: rgba(124, 92, 255, 0.3); color: #d8b4fe; font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 1px 5px; border-radius: 10px; }
+.history-btn.danger { background: rgba(255, 92, 141, 0.12); border-color: rgba(255, 92, 141, 0.3); color: #ff5c8d; }
+.history-btn.danger:hover:not(:disabled) { background: rgba(255, 92, 141, 0.25); border-color: rgba(255, 92, 141, 0.6); color: #ffffff; }
+.history-count { background: rgba(124, 92, 255, 0.3); color: #d8b4fe; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; padding: 1px 4px; border-radius: 8px; }
 
 /* Mobile Slide-Out Side Navigation Drawer */
 .mobile-drawer-overlay {
