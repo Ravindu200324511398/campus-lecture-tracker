@@ -1553,7 +1553,13 @@ function DeadlinesView({ deadlines, modulesById, onAddDeadline, onToggle, onDele
                 <div className="deadline-title">{d.title}</div>
                 <div className="deadline-module"><span className={"dot dot-" + (mo?.color || "violet")} /> {mo?.name || "General"}</div>
                 <div className="deadline-footer">
-                  <span className="deadline-date"><Clock size={12} /> {fmtDateLabel(due)} ({diffDays === 0 ? "Due Today" : diffDays > 0 ? `${diffDays} days left` : "Overdue"})</span>
+                  <span className="deadline-date">
+                    <Clock size={13} />
+                    <span>{fmtDateLabel(due)}</span>
+                    <span className={"deadline-days-tag" + (isOverdue ? " overdue" : diffDays === 0 ? " today" : "")}>
+                      {diffDays === 0 ? "Due Today" : diffDays > 0 ? `${diffDays}d left` : "Overdue"}
+                    </span>
+                  </span>
                   <input type="checkbox" checked={d.done} onChange={() => onToggle(d.id)} />
                 </div>
               </div>
@@ -2774,7 +2780,12 @@ body { position: relative; overflow-x: hidden; overflow-y: auto; }
 .type-badge.quiz { background: rgba(245, 197, 66, 0.2); color: #f5c542; border: 1px solid rgba(245, 197, 66, 0.4); }
 .deadline-title { font-size: 15px; font-weight: 600; color: #ffffff; margin-bottom: 6px; }
 .deadline-module { font-size: 12px; color: #94a3b8; display: flex; align-items: center; gap: 6px; margin-bottom: 12px; }
-.deadline-footer { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #cbd5e1; }
+.deadline-footer { display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: #cbd5e1; gap: 8px; margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.06); }
+.deadline-date { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap !important; overflow: hidden; text-overflow: ellipsis; flex: 1; min-width: 0; }
+.deadline-date svg { flex-shrink: 0; color: #34e5ff; }
+.deadline-days-tag { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 600; padding: 1px 6px; border-radius: 6px; background: rgba(255, 255, 255, 0.06); color: #cbd5e1; white-space: nowrap !important; flex-shrink: 0; }
+.deadline-days-tag.overdue { background: rgba(255, 92, 141, 0.15); color: #ff5c8d; }
+.deadline-days-tag.today { background: rgba(245, 197, 66, 0.15); color: #f5c542; }
 
 .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; transition: transform 0.2s ease; }
 .dot-violet { background: #9b8cff; box-shadow: 0 0 8px rgba(155, 140, 255, 0.5); }
