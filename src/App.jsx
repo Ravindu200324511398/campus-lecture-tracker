@@ -2290,41 +2290,82 @@ body { margin: 0; overflow-x: hidden; width: 100vw; }
 /* Dashboard Grid - Full Width 2-Column Responsive Layout */
 .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: 24px; width: 100%; }
 
-/* Mobile Media Queries */
+/* Mobile Media Queries - Touch Optimized for Mobile Browsers */
 @media (max-width: 768px) {
-  .header { padding: 12px 16px; }
+  .header { padding: 10px 14px; gap: 8px; }
+  .brand { font-size: 16px; gap: 8px; }
+  .logo-icon { width: 30px; height: 30px; border-radius: 8px; }
+  .pro-badge { font-size: 9px; padding: 1px 4px; }
   .desktop-nav { display: none !important; }
   .mobile-menu-trigger { display: flex !important; }
 
-  .container { padding: 16px 14px 40px; }
-  .dash-grid { grid-template-columns: 1fr; gap: 16px; }
+  .container { padding: 14px 12px 36px; }
+  .dash-grid { grid-template-columns: 1fr; gap: 14px; }
 
-  .hero-banner { padding: 24px 18px; gap: 16px; border-radius: 18px; }
-  .hero-title { font-size: 22px; }
-  .hero-subtitle { font-size: 13px; margin-bottom: 16px; }
-  .hero-actions { width: 100%; flex-direction: column; }
-  .hero-actions .btn { width: 100%; justify-content: center; }
+  .hero-banner { padding: 20px 16px; gap: 14px; border-radius: 16px; }
+  .hero-title { font-size: 20px; margin-bottom: 6px; }
+  .hero-subtitle { font-size: 12.5px; margin-bottom: 14px; line-height: 1.45; }
+  .hero-actions { width: 100%; flex-direction: column; gap: 8px; }
+  .hero-actions .btn { width: 100%; justify-content: center; padding: 10px 14px; font-size: 13px; }
 
-  .hero-stats { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; min-width: auto; }
-  .hero-stat-card { flex-direction: column; text-align: center; padding: 10px 8px; gap: 4px; }
-  .hstat-value { font-size: 17px; }
-  .hstat-label { font-size: 10px; justify-content: center; }
+  .hero-stats { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; min-width: auto; }
+  .hero-stat-card { flex-direction: column; text-align: center; padding: 8px 4px; gap: 3px; border-radius: 12px; }
+  .hstat-value { font-size: 16px; }
+  .hstat-label { font-size: 9.5px; justify-content: center; gap: 3px; }
 
-  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-  .stat-chip { padding: 8px 4px; }
-  .stat-chip span { font-size: 16px; }
+  .badge-bar { margin-bottom: 16px; padding: 16px 14px; }
+  .badge-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .badge-item { padding: 8px 10px; gap: 8px; border-radius: 12px; }
+  .badge-icon { width: 28px; height: 28px; border-radius: 8px; }
+  .badge-name { font-size: 11.5px; }
+  .badge-desc { font-size: 9px; }
 
-  .week-grid { grid-template-columns: 1fr; gap: 10px; }
-  .day-col { min-height: auto; }
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 10px; }
+  .stat-chip { padding: 6px 4px; gap: 3px; border-radius: 10px; flex-direction: column; }
+  .stat-chip span { font-size: 14px; }
+  .stat-chip small { font-size: 10px; }
+
+  .ring-wrap, .ring-svg { width: 130px; height: 130px; }
+  .ring-value { font-size: 28px; }
+
+  /* Native Touch Swipeable Horizontal Week Grid */
+  .week-toolbar { flex-direction: column; align-items: stretch; gap: 10px; margin: 12px 0 14px; }
+  .week-nav { justify-content: space-between; width: 100%; }
+  .week-label { font-size: 14px; min-width: auto; }
+  .week-toolbar .btn { width: 100%; justify-content: center; }
+
+  .week-grid {
+    display: flex !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    gap: 10px !important;
+    padding-bottom: 10px !important;
+    width: 100%;
+  }
+  .day-col {
+    flex: 0 0 145px !important;
+    min-width: 145px !important;
+    scroll-snap-align: start;
+    min-height: 220px;
+    padding: 12px 10px;
+  }
+
+  .chart-bar-row { grid-template-columns: 85px 1fr 40px; font-size: 11px; gap: 8px; }
+  .module-grid { grid-template-columns: 1fr; gap: 14px; }
+  .deadline-grid { grid-template-columns: 1fr; gap: 12px; }
 }
 
 @media (max-width: 500px) {
-  .degree-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .toast-banner { left: 14px; right: 14px; bottom: 14px; justify-content: center; text-align: center; }
-  .glass-modal { padding: 18px 14px; border-radius: 18px; }
+  .degree-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .degree-card { padding: 14px 8px; }
+  .degree-card span { font-size: 13px; }
+  .degree-card small { font-size: 10px; }
+  .toast-banner { left: 10px; right: 10px; bottom: 10px; justify-content: center; text-align: center; font-size: 12px; padding: 9px 14px; }
+  .glass-modal { padding: 16px 12px; border-radius: 18px; max-width: 95vw; }
   .slot-edit-row { grid-template-columns: 1fr 1fr; gap: 6px; }
   .slot-edit-row button { grid-column: 1 / -1; justify-self: flex-end; }
-  .field-row { grid-template-columns: 1fr; }
+  .field-row { grid-template-columns: 1fr; gap: 10px; }
 }
 
 /* Pagination Controls */
