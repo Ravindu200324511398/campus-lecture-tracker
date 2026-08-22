@@ -976,8 +976,8 @@ export default function App() {
           <span>Lecture Tracker <span className="pro-badge">PRO v4</span></span>
         </div>
 
-        {/* Desktop Header Navigation */}
-        <nav className="navtabs desktop-nav">
+        {/* Header Navigation Tabs - Always Visible on All Screens */}
+        <nav className="navtabs">
           <button className={"tab" + (tab === "dashboard" ? " active" : "")} onClick={() => setTab("dashboard")}><LayoutDashboard size={15} /> Dashboard</button>
           <button className={"tab" + (tab === "week" ? " active" : "")} onClick={() => setTab("week")}><CalendarClock size={15} /> Week View</button>
           <button className={"tab" + (tab === "analytics" ? " active" : "")} onClick={() => setTab("analytics")}><BarChart3 size={15} /> Analytics & Goal Simulator</button>
@@ -2540,7 +2540,8 @@ body { position: relative; overflow-x: hidden; overflow-y: auto; }
 
 /* Mobile Media Queries - Touch Optimized for Mobile Browsers */
 @media (max-width: 768px) {
-  .header { padding: 10px 14px; gap: 8px; }
+  .header { padding: 10px 12px; gap: 8px; flex-wrap: wrap; }
+  .navtabs { width: 100%; order: 3; justify-content: flex-start; margin-top: 2px; }
   .brand { font-size: 16px; gap: 8px; }
   .logo-icon { width: 30px; height: 30px; border-radius: 8px; }
   .pro-badge { font-size: 9px; padding: 1px 4px; }
