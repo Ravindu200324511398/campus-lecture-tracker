@@ -2358,12 +2358,12 @@ body { position: relative; overflow-x: hidden; overflow-y: auto; }
 .spin { animation: spin 1s linear infinite; color: #7c5cff; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* Header Navigation - Full Screen Width Single Row */
-/* Header Navigation - Responsive Multi-Group Toolbar */
+/* Header Navigation - Floating Glassmorphism Toolbar */
 .header {
-  display: flex; align-items: center; justify-content: space-between; padding: 10px 24px; width: 100%; gap: 12px;
-  background: rgba(10, 13, 28, 0.94); border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(24px); position: sticky; top: 0; z-index: 40; transition: all 0.3s ease; flex-wrap: wrap;
+  display: flex; align-items: center; justify-content: space-between; padding: 10px 18px; width: 100%; gap: 12px;
+  background: rgba(10, 13, 28, 0.94); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; margin-bottom: 20px;
+  backdrop-filter: blur(24px); position: sticky; top: 12px; z-index: 40; transition: all 0.3s ease; flex-wrap: wrap;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .brand { display: flex; align-items: center; gap: 8px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px; color: #ffffff; flex-shrink: 0; }
@@ -2490,8 +2490,8 @@ body { position: relative; overflow-x: hidden; overflow-y: auto; }
 }
 @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-/* Centered Max-Width Container for Widescreen Displays */
-.container { width: 100%; max-width: 1440px; margin: 0 auto !important; padding: 24px 32px 40px; }
+/* Clean Container within Margined Outer Frame */
+.container { width: 100%; max-width: 100%; margin: 0; padding: 0; }
 .margin-bottom { margin-bottom: 24px; }
 .margin-top { margin-top: 18px; }
 
