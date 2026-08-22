@@ -1499,11 +1499,19 @@ function AnalyticsView({ modules, stats, gpaStats, streakAndBadges }) {
           <div className="field-row">
             <div className="field">
               <label>Future Classes Attended</label>
-              <input type="number" min="0" max="30" value={simAttended} onChange={(e) => setSimAttended(e.target.value)} />
+              <div className="custom-stepper">
+                <button className="stepper-btn" onClick={() => setSimAttended((v) => Math.max(0, Number(v) - 1))}>-</button>
+                <input type="number" min="0" max="30" value={simAttended} onChange={(e) => setSimAttended(Math.max(0, Math.min(30, Number(e.target.value))))} />
+                <button className="stepper-btn" onClick={() => setSimAttended((v) => Math.min(30, Number(v) + 1))}>+</button>
+              </div>
             </div>
             <div className="field">
               <label>Future Classes Missed</label>
-              <input type="number" min="0" max="30" value={simMissed} onChange={(e) => setSimMissed(e.target.value)} />
+              <div className="custom-stepper">
+                <button className="stepper-btn" onClick={() => setSimMissed((v) => Math.max(0, Number(v) - 1))}>-</button>
+                <input type="number" min="0" max="30" value={simMissed} onChange={(e) => setSimMissed(Math.max(0, Math.min(30, Number(e.target.value))))} />
+                <button className="stepper-btn" onClick={() => setSimMissed((v) => Math.min(30, Number(v) + 1))}>+</button>
+              </div>
             </div>
           </div>
 
@@ -2500,6 +2508,15 @@ body { position: relative; overflow-x: hidden; overflow-y: auto; }
 .sim-result-box { margin-top: 16px; padding: 16px; border-radius: 16px; border: 1px solid; text-align: center; transition: all 0.3s ease; }
 .sim-result-box.safe { background: rgba(45, 212, 191, 0.12); border-color: rgba(45, 212, 191, 0.4); color: #2dd4bf; }
 .sim-result-box.danger { background: rgba(255, 92, 141, 0.12); border-color: rgba(255, 92, 141, 0.4); color: #ff5c8d; }
+
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; margin-top: 14px; }
+.field { display: flex; flex-direction: column; gap: 6px; width: 100%; }
+.custom-stepper { display: flex; align-items: center; gap: 4px; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 4px; width: 100%; }
+.custom-stepper input { width: 100%; text-align: center; border: none !important; background: transparent !important; font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700; color: #ffffff; padding: 4px 0; outline: none !important; box-shadow: none !important; -moz-appearance: textfield; }
+.custom-stepper input::-webkit-outer-spin-button, .custom-stepper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.stepper-btn { width: 34px; height: 34px; border-radius: 9px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); color: #cbd5e1; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: all 0.2s ease; }
+.stepper-btn:hover { background: rgba(124, 92, 255, 0.35); border-color: rgba(124, 92, 255, 0.6); color: #34e5ff; transform: scale(1.05); }
+.stepper-btn:active { transform: scale(0.95); }
 .sim-res-val { font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 700; margin-bottom: 4px; }
 .sim-res-status { font-size: 13px; font-weight: 600; }
 
