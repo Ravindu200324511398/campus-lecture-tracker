@@ -363,8 +363,88 @@ function calculateBunk(present, marked, thresholdPct) {
   }
 }
 
+function getDemoData() {
+  const m1Id = "demo-mod-1";
+  const m2Id = "demo-mod-2";
+  const m3Id = "demo-mod-3";
+  const m4Id = "demo-mod-4";
+
+  const today = new Date();
+  const d = (daysAgo) => {
+    const date = new Date(today);
+    date.setDate(date.getDate() - daysAgo);
+    return date.toISOString().slice(0, 10);
+  };
+
+  const modules = [
+    {
+      id: m1Id, code: "CM3720", name: "Machine Learning & AI", credits: 3, grade: "A", color: "violet", threshold: 80,
+      schedule: [{ id: "s1", day: 0, start: "09:00", end: "11:00", venue: "Auditorium A" }]
+    },
+    {
+      id: m2Id, code: "IN2311", name: "Operating Systems", credits: 3, grade: "A", color: "teal", threshold: 80,
+      schedule: [{ id: "s2", day: 1, start: "11:00", end: "13:00", venue: "Lab 3" }]
+    },
+    {
+      id: m3Id, code: "IN2101", name: "Object-Oriented Programming", credits: 3, grade: "A-", color: "sky", threshold: 80,
+      schedule: [{ id: "s3", day: 2, start: "14:00", end: "16:00", venue: "Lecture Hall 2" }]
+    },
+    {
+      id: m4Id, code: "CM1210", name: "Intelligent Machines", credits: 3, grade: "B+", color: "coral", threshold: 75,
+      schedule: [{ id: "s4", day: 3, start: "09:00", end: "11:00", venue: "Auditorium B" }]
+    }
+  ];
+
+  const sessions = [
+    {
+      id: "sess-1", moduleId: m1Id, date: d(1), slotId: "s1", status: "present",
+      takeaways: "Understand Gradient Descent optimization and Learning Rate tuning.",
+      topics: ["Supervised Learning", "Linear Regression", "Gradient Descent"],
+      note: "Professor covered cost function convergence. Recommended studying Chapter 3 of textbook.",
+      codeSnippet: "def gradient_descent(X, y, lr=0.01, epochs=1000):\n    # W_new = W - lr * dJ/dW\n    pass",
+      tags: ["Exam Topic", "Formula"],
+      todos: [{ id: "t1", text: "Complete Assignment 1 on Linear Regression", done: false }]
+    },
+    {
+      id: "sess-2", moduleId: m2Id, date: d(2), slotId: "s2", status: "present",
+      takeaways: "Process synchronization using Semaphores and Mutex locks.",
+      topics: ["Process Management", "Semaphores", "Deadlocks"],
+      note: "Discussed Dining Philosophers problem and prevention techniques.",
+      codeSnippet: "sem_wait(&mutex);\n// Critical Section\nsem_post(&mutex);",
+      tags: ["Lab Practice"],
+      todos: [{ id: "t2", text: "Implement Mutex C program in Lab 3", done: true }]
+    },
+    {
+      id: "sess-3", moduleId: m3Id, date: d(3), slotId: "s3", status: "present",
+      takeaways: "Polymorphism, Method Overriding vs Overloading in Java.",
+      topics: ["Inheritance", "Interfaces", "Abstract Classes"],
+      note: "Practiced factory design pattern implementations.",
+      codeSnippet: "public interface Machine {\n    void execute();\n}",
+      tags: ["OOP Core"],
+      todos: []
+    },
+    {
+      id: "sess-4", moduleId: m4Id, date: d(5), slotId: "s4", status: "absent",
+      takeaways: "State Space Search & A* Search algorithm.",
+      topics: ["Search Space", "Heuristic Functions"],
+      note: "Missed due to campus event. Borrowed notes from Alex.",
+      codeSnippet: "f(n) = g(n) + h(n)",
+      tags: ["Missed Lecture"],
+      todos: [{ id: "t3", text: "Read Chapter 4 on Heuristic Search", done: false }]
+    }
+  ];
+
+  const deadlines = [
+    { id: "dl-1", title: "Machine Learning Midterm Exam", moduleId: m1Id, dueDate: d(-5), type: "exam", done: false },
+    { id: "dl-2", title: "OS Mutex C Programming Lab", moduleId: m2Id, dueDate: d(-2), type: "assignment", done: false },
+    { id: "dl-3", title: "OOP Java Project Submission", moduleId: m3Id, dueDate: d(-10), type: "assignment", done: false }
+  ];
+
+  return { degree: "AI", modules, sessions, deadlines, theme: "cyberpunk" };
+}
+
 function emptyState() {
-  return { degree: null, modules: [], sessions: [], deadlines: [], theme: "cyberpunk" };
+  return getDemoData();
 }
 
 export default function App() {
@@ -635,6 +715,26 @@ export default function App() {
     fireSwal({ title: "Report Exported!", text: "CSV Attendance report has been downloaded.", icon: "success" });
   };
 
+  const loadDemoData = () => {
+    commitState(getDemoData(), "Loaded sample demo data");
+    fireSwal({ title: "Demo Data Loaded! 🎉", text: "Sample modules, lecture notes, and deadlines loaded. You can explore all features or click Reset to start fresh anytime.", icon: "success" });
+  };
+
+  const clearAllData = async () => {
+    const res = await fireSwal({
+      title: "Clear All Data & Reset?",
+      text: "This will remove all sample modules, lecture notes, and deadlines so you can start completely fresh with your own courses.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Reset Everything",
+      confirmButtonColor: "#ff5c8d"
+    });
+    if (res.isConfirmed) {
+      commitState({ degree: null, modules: [], sessions: [], deadlines: [], theme: state.theme || "cyberpunk" }, "Reset all data");
+      fireSwal({ title: "Reset Complete!", text: "All data cleared. You can now import your curriculum or add modules!", icon: "success" });
+    }
+  };
+
   const importBackupJSON = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -818,6 +918,12 @@ export default function App() {
             <button className="history-btn" onClick={exportCSVReport} title="Export CSV Report">
               <FileSpreadsheet size={14} /> CSV
             </button>
+            <button className="history-btn" onClick={loadDemoData} title="Load Sample Demo Data">
+              <Sparkles size={14} /> Demo
+            </button>
+            <button className="history-btn danger" onClick={clearAllData} title="Clear All Data & Reset">
+              <Trash2 size={14} /> Reset
+            </button>
           </div>
         </div>
 
@@ -881,7 +987,10 @@ export default function App() {
               <button className="drawer-action-btn" onClick={redo} disabled={historyFuture.length === 0}>
                 <Redo2 size={16} /> Redo ({historyFuture.length})
               </button>
-              <button className="drawer-action-btn primary" onClick={exportBackupJSON}>
+              <button className="drawer-action-btn primary" onClick={loadDemoData}>
+                <Sparkles size={16} /> Load Demo Data
+              </button>
+              <button className="drawer-action-btn" onClick={exportBackupJSON}>
                 <Download size={16} /> Backup JSON
               </button>
               <button className="drawer-action-btn" onClick={() => { setMobileMenuOpen(false); fileInputRef.current?.click(); }}>
@@ -889,6 +998,9 @@ export default function App() {
               </button>
               <button className="drawer-action-btn" onClick={exportCSVReport}>
                 <FileSpreadsheet size={16} /> Export CSV
+              </button>
+              <button className="drawer-action-btn" style={{ color: "#ff5c8d" }} onClick={clearAllData}>
+                <Trash2 size={16} /> Reset All Data
               </button>
             </div>
           </div>
@@ -914,6 +1026,7 @@ export default function App() {
             onSetup={() => setSetupOpen(true)}
             onAddOneOff={() => setAddOneOff(true)}
             onAddDeadline={() => setDeadlineModal(true)}
+            onLoadDemo={loadDemoData}
           />
         )}
 
@@ -1032,7 +1145,7 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
   );
 }
 
-function Dashboard({ state, stats, gpaStats, streakAndBadges, pendingTodos, notesFeed, modulesById, search, setSearch, onToggleTodo, onOpenSession, onSetup, onAddOneOff, onAddDeadline }) {
+function Dashboard({ state, stats, gpaStats, streakAndBadges, pendingTodos, notesFeed, modulesById, search, setSearch, onToggleTodo, onOpenSession, onSetup, onAddOneOff, onAddDeadline, onLoadDemo }) {
   const [todoPage, setTodoPage] = useState(1);
   const [notesPage, setNotesPage] = useState(1);
 
@@ -1057,8 +1170,11 @@ function Dashboard({ state, stats, gpaStats, streakAndBadges, pendingTodos, note
       <div className="empty-hero glass-card fadeInUp">
         <div className="hero-icon"><BookOpen size={48} /></div>
         <h2>No Modules Configured Yet</h2>
-        <p>Select your degree curriculum to auto-fill modules or create custom ones manually.</p>
-        <button className="btn primary glow" onClick={onSetup}><Plus size={16} /> Get Started Now</button>
+        <p>Import your degree curriculum, add modules manually, or load sample demo data to see how it works.</p>
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center", marginTop: 12 }}>
+          <button className="btn primary glow" onClick={onSetup}><Plus size={16} /> Import Curriculum</button>
+          <button className="btn ghost" onClick={onLoadDemo}><Sparkles size={16} /> Load Sample Demo Data</button>
+        </div>
       </div>
     );
   }
