@@ -969,122 +969,66 @@ export default function App() {
       <div className="bg" />
 
       <input type="file" ref={fileInputRef} onChange={importBackupJSON} accept=".json" style={{ display: "none" }} />
-      <div className="app-layout-frame">
-        <header className="header">
-          <div className="header-inner">
-            <div className="brand">
-              <div className="logo-icon"><GraduationCap size={22} /></div>
-              <span>Lecture Tracker <span className="pro-badge">PRO v4</span></span>
-            </div>
 
-            {/* Header Navigation Tabs - Always Visible on All Screens */}
-            <nav className="navtabs">
-              <button className={"tab" + (tab === "dashboard" ? " active" : "")} onClick={() => setTab("dashboard")}><LayoutDashboard size={15} /> Dashboard</button>
-              <button className={"tab" + (tab === "week" ? " active" : "")} onClick={() => setTab("week")}><CalendarClock size={15} /> Week View</button>
-              <button className={"tab" + (tab === "analytics" ? " active" : "")} onClick={() => setTab("analytics")}><BarChart3 size={15} /> Analytics & Goal Simulator</button>
-              <button className={"tab" + (tab === "deadlines" ? " active" : "")} onClick={() => setTab("deadlines")}><Calendar size={15} /> Exams ({(state.deadlines || []).filter(d => !d.done).length})</button>
-              <button className={"tab" + (tab === "modules" ? " active" : "")} onClick={() => setTab("modules")}><Layers size={15} /> Modules ({state.modules.length})</button>
-            </nav>
-
-            <div className="undo-redo-toolbar desktop-nav">
-              <div className="theme-toggle">
-                <button className={"theme-btn" + (state.theme === "cyberpunk" ? " active" : "")} onClick={() => setTheme("cyberpunk")} title="Cyberpunk Dark"><Sparkles size={14} /></button>
-                <button className={"theme-btn" + (state.theme === "midnight" ? " active" : "")} onClick={() => setTheme("midnight")} title="Midnight Blue"><Moon size={14} /></button>
-                <button className={"theme-btn" + (state.theme === "light" ? " active" : "")} onClick={() => setTheme("light")} title="Light Academic"><Sun size={14} /></button>
-              </div>
-
-              <div className="history-group">
-                <button className="history-btn" onClick={undo} disabled={historyPast.length === 0} title="Undo (Cmd+Z / Ctrl+Z)">
-                  <Undo2 size={15} />
-                  {historyPast.length > 0 && <span className="history-count">{historyPast.length}</span>}
-                </button>
-                <button className="history-btn" onClick={redo} disabled={historyFuture.length === 0} title="Redo (Cmd+Shift+Z / Ctrl+Y)">
-                  <Redo2 size={15} />
-                  {historyFuture.length > 0 && <span className="history-count">{historyFuture.length}</span>}
-                </button>
-              </div>
-
-              <div className="action-group">
-                <button className="history-btn glow-border" onClick={exportBackupJSON} title="Backup Data to JSON">
-                  <Download size={14} /> Backup
-                </button>
-                <button className="history-btn" onClick={() => fileInputRef.current?.click()} title="Restore Data from JSON">
-                  <Upload size={14} /> Restore
-                </button>
-                <button className="history-btn" onClick={exportCSVReport} title="Export CSV Report">
-                  <FileSpreadsheet size={14} /> CSV
-                </button>
-                <button className="history-btn" onClick={loadDemoData} title="Load Sample Demo Data">
-                  <Sparkles size={14} /> Demo
-                </button>
-                <button className="history-btn danger" onClick={clearAllData} title="Clear All Data & Reset">
-                  <Trash2 size={14} /> Reset
-                </button>
-              </div>
-            </div>
-
-            {/* Mobile Hamburger Trigger */}
-            <button className="mobile-menu-trigger icon-btn" onClick={() => setMobileMenuOpen(true)}>
-              <MenuIcon size={22} />
-            </button>
+      <header className="header">
+        <div className="header-inner">
+          <div className="brand">
+            <div className="logo-icon"><GraduationCap size={22} /></div>
+            <span>Lecture Tracker <span className="pro-badge">PRO v4</span></span>
           </div>
-        </header>
 
-        <main className="container tab-anim">
-          {tab === "dashboard" && (
-            <Dashboard
-              state={state} stats={stats} gpaStats={gpaStats} streakAndBadges={streakAndBadges} pendingTodos={pendingTodos} notesFeed={notesFeed}
-              modulesById={modulesById} search={search} setSearch={setSearch}
-              onToggleTodo={toggleTodo}
-              onOpenSession={(s) => {
-                const mo = modulesById[s.moduleId];
-                setSessionModal({ moduleId: s.moduleId, date: s.date, slotId: s.slotId, moduleName: mo?.name, time: "" });
-              }}
-              onSetup={() => setSetupOpen(true)}
-              onAddOneOff={() => setAddOneOff(true)}
-              onAddDeadline={() => setDeadlineModal(true)}
-              onLoadDemo={loadDemoData}
-            />
-          )}
+          {/* Header Navigation Tabs - Always Visible on All Screens */}
+          <nav className="navtabs">
+            <button className={"tab" + (tab === "dashboard" ? " active" : "")} onClick={() => setTab("dashboard")}><LayoutDashboard size={15} /> Dashboard</button>
+            <button className={"tab" + (tab === "week" ? " active" : "")} onClick={() => setTab("week")}><CalendarClock size={15} /> Week View</button>
+            <button className={"tab" + (tab === "analytics" ? " active" : "")} onClick={() => setTab("analytics")}><BarChart3 size={15} /> Analytics & Goal Simulator</button>
+            <button className={"tab" + (tab === "deadlines" ? " active" : "")} onClick={() => setTab("deadlines")}><Calendar size={15} /> Exams ({(state.deadlines || []).filter(d => !d.done).length})</button>
+            <button className={"tab" + (tab === "modules" ? " active" : "")} onClick={() => setTab("modules")}><Layers size={15} /> Modules ({state.modules.length})</button>
+          </nav>
 
-          {tab === "week" && (
-            <WeekView
-              weekStart={weekStart} weekDates={weekDates} occurrencesByDate={occurrencesByDate}
-              sessionsByKey={sessionsByKey} onPrev={() => setWeekOffset((w) => w - 1)} onNext={() => setWeekOffset((w) => w + 1)}
-              onToday={() => setWeekOffset(0)}
-              onOpen={(mo, slot, dateStr) => setSessionModal({ moduleId: mo.id, date: dateStr, slotId: slot.id, moduleName: mo.name, time: slot.start ? `${slot.start}${slot.end ? "–" + slot.end : ""}` : "" })}
-              onAddOneOff={() => setAddOneOff(true)}
-              empty={state.modules.length === 0}
-            />
-          )}
+          <div className="undo-redo-toolbar desktop-nav">
+            <div className="theme-toggle">
+              <button className={"theme-btn" + (state.theme === "cyberpunk" ? " active" : "")} onClick={() => setTheme("cyberpunk")} title="Cyberpunk Dark"><Sparkles size={14} /></button>
+              <button className={"theme-btn" + (state.theme === "midnight" ? " active" : "")} onClick={() => setTheme("midnight")} title="Midnight Blue"><Moon size={14} /></button>
+              <button className={"theme-btn" + (state.theme === "light" ? " active" : "")} onClick={() => setTheme("light")} title="Light Academic"><Sun size={14} /></button>
+            </div>
 
-          {tab === "analytics" && (
-            <AnalyticsView
-              modules={state.modules} stats={stats} gpaStats={gpaStats} streakAndBadges={streakAndBadges}
-            />
-          )}
+            <div className="history-group">
+              <button className="history-btn" onClick={undo} disabled={historyPast.length === 0} title="Undo (Cmd+Z / Ctrl+Z)">
+                <Undo2 size={15} />
+                {historyPast.length > 0 && <span className="history-count">{historyPast.length}</span>}
+              </button>
+              <button className="history-btn" onClick={redo} disabled={historyFuture.length === 0} title="Redo (Cmd+Shift+Z / Ctrl+Y)">
+                <Redo2 size={15} />
+                {historyFuture.length > 0 && <span className="history-count">{historyFuture.length}</span>}
+              </button>
+            </div>
 
-          {tab === "deadlines" && (
-            <DeadlinesView
-              deadlines={state.deadlines || []}
-              modulesById={modulesById}
-              onAddDeadline={() => setDeadlineModal(true)}
-              onToggle={toggleDeadline}
-              onDelete={deleteDeadline}
-            />
-          )}
+            <div className="action-group">
+              <button className="history-btn glow-border" onClick={exportBackupJSON} title="Backup Data to JSON">
+                <Download size={14} /> Backup
+              </button>
+              <button className="history-btn" onClick={() => fileInputRef.current?.click()} title="Restore Data from JSON">
+                <Upload size={14} /> Restore
+              </button>
+              <button className="history-btn" onClick={exportCSVReport} title="Export CSV Report">
+                <FileSpreadsheet size={14} /> CSV
+              </button>
+              <button className="history-btn" onClick={loadDemoData} title="Load Sample Demo Data">
+                <Sparkles size={14} /> Demo
+              </button>
+              <button className="history-btn danger" onClick={clearAllData} title="Clear All Data & Reset">
+                <Trash2 size={14} /> Reset
+              </button>
+            </div>
+          </div>
 
-          {tab === "modules" && (
-            <ModulesView
-              modules={state.modules} stats={stats} gpaStats={gpaStats}
-              onAddTemplate={() => setSetupOpen(true)}
-              onEdit={(m) => setModuleModal(m)}
-              onAddCustom={() => setModuleModal({ id: null })}
-              onRemove={removeModule}
-            />
-          )}
-        </main>
-      </div>
+          {/* Mobile Hamburger Trigger */}
+          <button className="mobile-menu-trigger icon-btn" onClick={() => setMobileMenuOpen(true)}>
+            <MenuIcon size={22} />
+          </button>
+        </div>
+      </header>
 
       {/* Mobile Slide-Out Side Navigation Drawer */}
       <div className={`mobile-drawer-overlay ${mobileMenuOpen ? "open" : ""}`} onClick={() => setMobileMenuOpen(false)}>
@@ -1166,6 +1110,60 @@ export default function App() {
         </div>
       )}
 
+      <main className="container tab-anim">
+        {tab === "dashboard" && (
+          <Dashboard
+            state={state} stats={stats} gpaStats={gpaStats} streakAndBadges={streakAndBadges} pendingTodos={pendingTodos} notesFeed={notesFeed}
+            modulesById={modulesById} search={search} setSearch={setSearch}
+            onToggleTodo={toggleTodo}
+            onOpenSession={(s) => {
+              const mo = modulesById[s.moduleId];
+              setSessionModal({ moduleId: s.moduleId, date: s.date, slotId: s.slotId, moduleName: mo?.name, time: "" });
+            }}
+            onSetup={() => setSetupOpen(true)}
+            onAddOneOff={() => setAddOneOff(true)}
+            onAddDeadline={() => setDeadlineModal(true)}
+            onLoadDemo={loadDemoData}
+          />
+        )}
+
+        {tab === "week" && (
+          <WeekView
+            weekStart={weekStart} weekDates={weekDates} occurrencesByDate={occurrencesByDate}
+            sessionsByKey={sessionsByKey} onPrev={() => setWeekOffset((w) => w - 1)} onNext={() => setWeekOffset((w) => w + 1)}
+            onToday={() => setWeekOffset(0)}
+            onOpen={(mo, slot, dateStr) => setSessionModal({ moduleId: mo.id, date: dateStr, slotId: slot.id, moduleName: mo.name, time: slot.start ? `${slot.start}${slot.end ? "–" + slot.end : ""}` : "" })}
+            onAddOneOff={() => setAddOneOff(true)}
+            empty={state.modules.length === 0}
+          />
+        )}
+
+        {tab === "analytics" && (
+          <AnalyticsView
+            modules={state.modules} stats={stats} gpaStats={gpaStats} streakAndBadges={streakAndBadges}
+          />
+        )}
+
+        {tab === "deadlines" && (
+          <DeadlinesView
+            deadlines={state.deadlines || []}
+            modulesById={modulesById}
+            onAddDeadline={() => setDeadlineModal(true)}
+            onToggle={toggleDeadline}
+            onDelete={deleteDeadline}
+          />
+        )}
+
+        {tab === "modules" && (
+          <ModulesView
+            modules={state.modules} stats={stats} gpaStats={gpaStats}
+            onAddTemplate={() => setSetupOpen(true)}
+            onEdit={(m) => setModuleModal(m)}
+            onAddCustom={() => setModuleModal({ id: null })}
+            onRemove={removeModule}
+          />
+        )}
+      </main>
 
       {setupOpen && (
         <SetupModal
@@ -2376,29 +2374,16 @@ body { position: relative; overflow-x: hidden; overflow-y: auto; }
 .spin { animation: spin 1s linear infinite; color: #7c5cff; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* Master App Layout Frame with 100% Equal Left and Right Margins */
-.app-layout-frame {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto !important;
-  padding: 20px 24px 48px !important;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-
+/* Header Navigation - Full Width Top Bar with Centered Inner Column */
 .header {
   width: 100%;
   background: rgba(10, 13, 28, 0.94);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 18px;
-  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(24px);
   position: sticky;
-  top: 14px;
+  top: 0;
   z-index: 40;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
 }
 
 .header-inner {
@@ -2406,7 +2391,9 @@ body { position: relative; overflow-x: hidden; overflow-y: auto; }
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 10px 18px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 24px;
   gap: 12px;
   flex-wrap: wrap;
 }
@@ -2582,38 +2569,36 @@ body { position: relative; overflow-x: hidden; overflow-y: auto; }
 
 .glass-card { background: rgba(255, 255, 255, 0.035); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 22px; padding: 24px; backdrop-filter: blur(24px); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease; }
 .glass-card:hover { border-color: rgba(124, 92, 255, 0.3); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3); }
+
+.card.wide { grid-column: 1 / -1; }
+.card-title { display: flex; align-items: center; gap: 8px; font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; color: #ffffff; margin: 0 0 18px; }
+.card-title-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
+.card-title-row .card-title { margin: 0; }
+.header-controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
 /* Dashboard Grid - Full Width Responsive Multi-Column Layout */
 .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 20px; width: 100%; }
 
 /* Tablet & Medium Screen Breakpoints (769px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
-  .app-layout-frame { padding: 16px 20px 40px !important; }
+  .container { padding: 20px 18px 36px; }
   .dash-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px; }
   .hero-banner { padding: 24px 20px; gap: 18px; }
   .hero-title { font-size: 26px; }
   .field-row { gap: 12px; }
 }
 
-.brand-bar { display: flex; align-items: center; gap: 12px; }
-.tab-text-short { display: none; }
-
 /* Mobile Media Queries - Touch Optimized for Mobile Browsers */
 @media (max-width: 768px) {
-  .app-layout-frame { padding: 10px 12px 32px !important; }
-  .header { border-radius: 14px; top: 8px; margin-bottom: 14px; }
-  .header-inner { padding: 8px 10px; gap: 6px; }
-  .brand-bar { display: flex; align-items: center; justify-content: space-between; width: 100%; }
-  .navtabs { width: 100%; justify-content: flex-start; margin-top: 4px; padding: 3px; gap: 3px; }
-  .tab { padding: 5px 9px; font-size: 11.5px; }
-  .tab-text-full { display: none; }
-  .tab-text-short { display: inline; }
-  .brand { font-size: 15px; gap: 6px; }
-  .logo-icon { width: 28px; height: 28px; border-radius: 7px; }
-  .pro-badge { font-size: 8.5px; padding: 1px 3px; }
+  .header { padding: 10px 12px; gap: 8px; flex-wrap: wrap; }
+  .navtabs { width: 100%; order: 3; justify-content: flex-start; margin-top: 2px; }
+  .brand { font-size: 16px; gap: 8px; }
+  .logo-icon { width: 30px; height: 30px; border-radius: 8px; }
+  .pro-badge { font-size: 9px; padding: 1px 4px; }
   .desktop-nav { display: none !important; }
   .mobile-menu-trigger { display: flex !important; }
 
-  .container { padding: 0; }
+  .container { padding: 14px 12px 36px; }
   .dash-grid { grid-template-columns: 1fr; gap: 14px; }
 
   .hero-banner { padding: 20px 16px; gap: 14px; border-radius: 16px; }
