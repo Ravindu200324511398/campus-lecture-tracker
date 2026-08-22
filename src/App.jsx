@@ -1859,8 +1859,15 @@ function OneOffModal({ modules, onClose, onAdd }) {
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@500;600&display=swap');
 
-* { box-sizing: border-box; }
-body { margin: 0; overflow-x: hidden; width: 100vw; }
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+body { position: relative; overflow-x: hidden; overflow-y: auto; }
 
 /* SweetAlert Custom Dark Styling */
 .swal-dark-popup {
@@ -2453,6 +2460,8 @@ body { margin: 0; overflow-x: hidden; width: 100vw; }
   .week-grid {
     display: flex !important;
     overflow-x: auto !important;
+    overflow-y: hidden !important;
+    touch-action: pan-x pan-y !important;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
     gap: 10px !important;

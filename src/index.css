@@ -10,9 +10,12 @@ html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100%;
   overflow-x: hidden;
+  overflow-y: auto;
   background: #060814;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 #root {
@@ -26,4 +29,5 @@ html, body {
   flex-direction: column;
   box-sizing: border-box;
   text-align: left !important;
+  overflow-x: hidden;
 }
