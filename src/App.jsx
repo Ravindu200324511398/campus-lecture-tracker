@@ -2463,10 +2463,10 @@ body { position: relative; overflow-x: hidden; overflow-y: auto; }
 }
 @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-/* Full Screen Width Container with Small Margins */
-.container { width: 100%; max-width: 100%; padding: 20px 24px 40px; margin: 0; }
-.margin-bottom { margin-bottom: 20px; }
-.margin-top { margin-top: 16px; }
+/* Centered Max-Width Container for Widescreen Displays */
+.container { width: 100%; max-width: 1440px; margin: 0 auto !important; padding: 24px 32px 40px; }
+.margin-bottom { margin-bottom: 24px; }
+.margin-top { margin-top: 18px; }
 
 /* Hero Cover Banner - Edge to Edge Full Width */
 .hero-banner {
