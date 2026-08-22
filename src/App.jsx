@@ -2242,14 +2242,14 @@ body { margin: 0; overflow-x: hidden; width: 100vw; }
 }
 @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-/* Full Screen Width Container */
-.container { width: 100%; max-width: 100%; padding: 24px 36px 40px; margin: 0; }
-.margin-bottom { margin-bottom: 24px; }
-.margin-top { margin-top: 18px; }
+/* Full Screen Width Container with Small Margins */
+.container { width: 100%; max-width: 100%; padding: 20px 24px 40px; margin: 0; }
+.margin-bottom { margin-bottom: 20px; }
+.margin-top { margin-top: 16px; }
 
 /* Hero Cover Banner - Edge to Edge Full Width */
 .hero-banner {
-  position: relative; overflow: hidden; border-radius: 24px; padding: 40px 36px; margin-bottom: 24px; width: 100%;
+  position: relative; overflow: hidden; border-radius: 20px; padding: 32px 28px; margin-bottom: 20px; width: 100%;
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;
   background: linear-gradient(135deg, rgba(124, 92, 255, 0.3), rgba(52, 229, 255, 0.18)), #0c0f24;
   border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);

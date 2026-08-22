@@ -1,0 +1,29 @@
+:root {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  color-scheme: dark light;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #060814;
+}
+
+#root {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  text-align: left !important;
+}
