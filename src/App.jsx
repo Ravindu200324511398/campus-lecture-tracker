@@ -1565,6 +1565,14 @@ function DeadlinesView({ deadlines, modulesById, onAddDeadline, onToggle, onDele
 
 function WeekView({ weekStart, weekDates, occurrencesByDate, sessionsByKey, onPrev, onNext, onToday, onOpen, onAddOneOff, empty }) {
   const today = fmtDate(new Date());
+  const [activeDayIdx, setActiveDayIdx] = useState(null);
+
+  const scrollToDay = (idx) => {
+    setActiveDayIdx(idx);
+    const el = document.getElementById(`day-col-${idx}`);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  };
+
   return (
     <div className="fadeInUp">
       <div className="week-toolbar">
@@ -1576,16 +1584,35 @@ function WeekView({ weekStart, weekDates, occurrencesByDate, sessionsByKey, onPr
         </div>
         <button className="btn primary sm glow" onClick={onAddOneOff}><Plus size={14} /> Add One-Off Lecture</button>
       </div>
+
+      {/* Mobile Quick Day Selector Pills */}
+      <div className="mobile-day-strip">
+        {weekDates.map((d, i) => {
+          const dateStr = fmtDate(d);
+          const isToday = dateStr === today;
+          return (
+            <button
+              key={i}
+              className={"mobile-day-pill" + (isToday ? " is-today" : "") + (activeDayIdx === i ? " active" : "")}
+              onClick={() => scrollToDay(i)}
+            >
+              <span>{DAYS[i]}</span>
+              <small>{fmtDateLabel(d).split(" ")[0]}</small>
+            </button>
+          );
+        })}
+      </div>
+
       {empty && <p className="muted-text" style={{ padding: "0 4px" }}>Add modules and set schedules in the "Modules" tab.</p>}
       <div className="week-grid">
         {weekDates.map((d, i) => {
           const dateStr = fmtDate(d);
           const occs = occurrencesByDate[dateStr] || [];
           return (
-            <div key={i} className={"day-col" + (dateStr === today ? " is-today" : "")}>
+            <div key={i} id={`day-col-${i}`} className={"day-col" + (dateStr === today ? " is-today" : "")}>
               <div className="day-header"><span>{DAYS[i]}</span><span className="day-num">{fmtDateLabel(d)}</span></div>
               <div className="day-body">
-                {occs.length === 0 && <div className="day-empty">–</div>}
+                {occs.length === 0 && <div className="day-empty">– No Lectures Scheduled –</div>}
                 {occs.map(({ module: mo, slot }) => {
                   const sess = sessionsByKey[mo.id + "|" + dateStr + "|" + slot.id];
                   const st = sess?.status ? STATUS[sess.status] : null;
@@ -2549,7 +2576,38 @@ body { position: relative; overflow-x: hidden; overflow-y: auto; }
   .ring-wrap, .ring-svg { width: 130px; height: 130px; }
   .ring-value { font-size: 28px; }
 
-  /* Native Touch Swipeable Horizontal Week Grid */
+  /* Mobile Day Selector Bar & Full-Width Vertical Cards */
+  .mobile-day-strip {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+  }
+
+  .mobile-day-pill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 8px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #cbd5e1;
+    font-size: 11px;
+    cursor: pointer;
+    flex: 1;
+    min-width: 42px;
+    transition: all 0.2s ease;
+  }
+  .mobile-day-pill span { font-weight: 700; }
+  .mobile-day-pill small { font-size: 9px; opacity: 0.8; }
+  .mobile-day-pill.is-today { border-color: rgba(124, 92, 255, 0.5); color: #34e5ff; }
+  .mobile-day-pill.active { background: linear-gradient(135deg, #7c5cff, #34e5ff); color: #060814; border-color: transparent; }
+
   .week-toolbar { flex-direction: column; align-items: stretch; gap: 10px; margin: 12px 0 14px; }
   .week-nav { justify-content: space-between; width: 100%; }
   .week-label { font-size: 14px; min-width: auto; }
@@ -2557,21 +2615,16 @@ body { position: relative; overflow-x: hidden; overflow-y: auto; }
 
   .week-grid {
     display: flex !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    touch-action: pan-x pan-y !important;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    gap: 10px !important;
-    padding-bottom: 10px !important;
-    width: 100%;
+    flex-direction: column !important;
+    gap: 12px !important;
+    width: 100% !important;
   }
   .day-col {
-    flex: 0 0 145px !important;
-    min-width: 145px !important;
-    scroll-snap-align: start;
-    min-height: 220px;
-    padding: 12px 10px;
+    width: 100% !important;
+    min-width: 100% !important;
+    flex: 1 1 100% !important;
+    min-height: auto !important;
+    padding: 14px 16px !important;
   }
 
   .chart-bar-row { grid-template-columns: 85px 1fr 40px; font-size: 11px; gap: 8px; }
