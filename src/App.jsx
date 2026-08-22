@@ -972,22 +972,16 @@ export default function App() {
 
       <header className="header">
         <div className="header-inner">
-          <div className="brand-bar">
-            <div className="brand">
-              <div className="logo-icon"><GraduationCap size={22} /></div>
-              <span>Lecture Tracker <span className="pro-badge">PRO v4</span></span>
-            </div>
-            {/* Mobile Hamburger Trigger */}
-            <button className="mobile-menu-trigger icon-btn" onClick={() => setMobileMenuOpen(true)}>
-              <MenuIcon size={20} />
-            </button>
+          <div className="brand">
+            <div className="logo-icon"><GraduationCap size={22} /></div>
+            <span>Lecture Tracker <span className="pro-badge">PRO v4</span></span>
           </div>
 
-          {/* Header Navigation Tabs - Touch Scrollable on Mobile */}
+          {/* Header Navigation Tabs - Always Visible on All Screens */}
           <nav className="navtabs">
             <button className={"tab" + (tab === "dashboard" ? " active" : "")} onClick={() => setTab("dashboard")}><LayoutDashboard size={15} /> Dashboard</button>
-            <button className={"tab" + (tab === "week" ? " active" : "")} onClick={() => setTab("week")}><CalendarClock size={15} /> <span className="tab-text-full">Week View</span><span className="tab-text-short">Week</span></button>
-            <button className={"tab" + (tab === "analytics" ? " active" : "")} onClick={() => setTab("analytics")}><BarChart3 size={15} /> <span className="tab-text-full">Analytics & Goal Simulator</span><span className="tab-text-short">Analytics</span></button>
+            <button className={"tab" + (tab === "week" ? " active" : "")} onClick={() => setTab("week")}><CalendarClock size={15} /> Week View</button>
+            <button className={"tab" + (tab === "analytics" ? " active" : "")} onClick={() => setTab("analytics")}><BarChart3 size={15} /> Analytics & Goal Simulator</button>
             <button className={"tab" + (tab === "deadlines" ? " active" : "")} onClick={() => setTab("deadlines")}><Calendar size={15} /> Exams ({(state.deadlines || []).filter(d => !d.done).length})</button>
             <button className={"tab" + (tab === "modules" ? " active" : "")} onClick={() => setTab("modules")}><Layers size={15} /> Modules ({state.modules.length})</button>
           </nav>
@@ -1028,6 +1022,11 @@ export default function App() {
               </button>
             </div>
           </div>
+
+          {/* Mobile Hamburger Trigger */}
+          <button className="mobile-menu-trigger icon-btn" onClick={() => setMobileMenuOpen(true)}>
+            <MenuIcon size={22} />
+          </button>
         </div>
       </header>
 
@@ -2587,20 +2586,15 @@ body { position: relative; overflow-x: hidden; overflow-y: auto; }
   .hero-banner { padding: 24px 20px; gap: 18px; }
   .hero-title { font-size: 26px; }
   .field-row { gap: 12px; }
-.brand-bar { display: flex; align-items: center; gap: 12px; }
-.tab-text-short { display: none; }
+}
 
 /* Mobile Media Queries - Touch Optimized for Mobile Browsers */
 @media (max-width: 768px) {
-  .header-inner { padding: 8px 12px; gap: 6px; }
-  .brand-bar { display: flex; align-items: center; justify-content: space-between; width: 100%; }
-  .navtabs { width: 100%; justify-content: flex-start; margin-top: 4px; padding: 3px; gap: 3px; }
-  .tab { padding: 5px 9px; font-size: 11.5px; }
-  .tab-text-full { display: none; }
-  .tab-text-short { display: inline; }
-  .brand { font-size: 15px; gap: 6px; }
-  .logo-icon { width: 28px; height: 28px; border-radius: 7px; }
-  .pro-badge { font-size: 8.5px; padding: 1px 3px; }
+  .header { padding: 10px 12px; gap: 8px; flex-wrap: wrap; }
+  .navtabs { width: 100%; order: 3; justify-content: flex-start; margin-top: 2px; }
+  .brand { font-size: 16px; gap: 8px; }
+  .logo-icon { width: 30px; height: 30px; border-radius: 8px; }
+  .pro-badge { font-size: 9px; padding: 1px 4px; }
   .desktop-nav { display: none !important; }
   .mobile-menu-trigger { display: flex !important; }
 
