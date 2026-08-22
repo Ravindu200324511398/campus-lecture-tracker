@@ -2590,13 +2590,26 @@ body { position: relative; overflow-x: hidden; overflow-y: auto; }
 
 /* Mobile Media Queries - Touch Optimized for Mobile Browsers */
 @media (max-width: 768px) {
-  .header { padding: 10px 12px; gap: 8px; flex-wrap: wrap; }
+  /* Fix: padding was being applied to both .header and .header-inner, doubling
+     the wasted horizontal space on phones. Only .header-inner (the flex row) needs it. */
+  .header-inner { padding: 10px 12px; gap: 8px; }
   .navtabs { width: 100%; order: 3; justify-content: flex-start; margin-top: 2px; }
-  .brand { font-size: 16px; gap: 8px; }
-  .logo-icon { width: 30px; height: 30px; border-radius: 8px; }
+  .brand { font-size: 16px; gap: 8px; min-width: 0; flex-shrink: 1; }
+  .brand > span { display: block; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .logo-icon { width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0; }
   .pro-badge { font-size: 9px; padding: 1px 4px; }
   .desktop-nav { display: none !important; }
   .mobile-menu-trigger { display: flex !important; }
+
+  /* Prevent iOS Safari from auto-zooming the page when a form field is focused */
+  input, select, textarea { font-size: 16px; }
+
+  /* Bigger, more reliable touch targets */
+  .icon-btn, .mobile-menu-trigger { min-width: 40px; min-height: 40px; justify-content: center; }
+  .history-btn { min-height: 38px; }
+  .stepper-btn { width: 38px; height: 38px; }
+  .slot-edit-row .icon-btn { min-width: 32px; min-height: 32px; padding: 6px; }
+  .status-btn, .tab { min-height: 36px; }
 
   .container { padding: 14px 12px 36px; }
   .dash-grid { grid-template-columns: 1fr; gap: 14px; }
@@ -2693,7 +2706,15 @@ body { position: relative; overflow-x: hidden; overflow-y: auto; }
   .slot-edit-row { grid-template-columns: 1fr 1fr; gap: 6px; }
   .slot-edit-row button { grid-column: 1 / -1; justify-self: flex-end; }
   .field-row { grid-template-columns: 1fr; gap: 10px; }
+  .header-controls { width: 100%; }
+  .search-box { max-width: none; }
+  .card-title-row { align-items: stretch; }
+  .card-title-row .pagination { align-self: flex-end; }
 }
+
+/* iOS safe-area support so the sticky header and toast don't sit under a notch / home indicator */
+.header { padding-top: env(safe-area-inset-top, 0px); }
+.toast-banner { margin-bottom: env(safe-area-inset-bottom, 0px); }
 
 /* Pagination Controls */
 .pagination { display: flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 4px 8px; }
