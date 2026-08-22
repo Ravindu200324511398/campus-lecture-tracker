@@ -1066,6 +1066,12 @@ function Dashboard({ state, stats, gpaStats, streakAndBadges, pendingTodos, note
   return (
     <div className="dashboard-wrapper fadeInUp">
       <div className="hero-banner glass-card">
+        <img
+          className="hero-cover-img"
+          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80"
+          alt="Academic Cover Banner"
+          onError={(e) => { e.target.style.display = 'none'; }}
+        />
         <div className="hero-mesh-art" />
         <div className="hero-overlay" />
         <div className="hero-content">
@@ -2250,6 +2256,10 @@ body { margin: 0; overflow-x: hidden; width: 100vw; }
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
 }
 .hero-banner:hover { transform: translateY(-2px); box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5); }
+.hero-cover-img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0.28; mix-blend-mode: overlay; pointer-events: none;
+}
 .hero-mesh-art {
   position: absolute; inset: 0; pointer-events: none; opacity: 0.35;
   background-image: radial-gradient(rgba(124, 92, 255, 0.4) 1px, transparent 1px), radial-gradient(rgba(52, 229, 255, 0.3) 1px, transparent 1px);
