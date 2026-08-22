@@ -971,61 +971,63 @@ export default function App() {
       <input type="file" ref={fileInputRef} onChange={importBackupJSON} accept=".json" style={{ display: "none" }} />
 
       <header className="header">
-        <div className="brand">
-          <div className="logo-icon"><GraduationCap size={22} /></div>
-          <span>Lecture Tracker <span className="pro-badge">PRO v4</span></span>
+        <div className="header-inner">
+          <div className="brand">
+            <div className="logo-icon"><GraduationCap size={22} /></div>
+            <span>Lecture Tracker <span className="pro-badge">PRO v4</span></span>
+          </div>
+
+          {/* Header Navigation Tabs - Always Visible on All Screens */}
+          <nav className="navtabs">
+            <button className={"tab" + (tab === "dashboard" ? " active" : "")} onClick={() => setTab("dashboard")}><LayoutDashboard size={15} /> Dashboard</button>
+            <button className={"tab" + (tab === "week" ? " active" : "")} onClick={() => setTab("week")}><CalendarClock size={15} /> Week View</button>
+            <button className={"tab" + (tab === "analytics" ? " active" : "")} onClick={() => setTab("analytics")}><BarChart3 size={15} /> Analytics & Goal Simulator</button>
+            <button className={"tab" + (tab === "deadlines" ? " active" : "")} onClick={() => setTab("deadlines")}><Calendar size={15} /> Exams ({(state.deadlines || []).filter(d => !d.done).length})</button>
+            <button className={"tab" + (tab === "modules" ? " active" : "")} onClick={() => setTab("modules")}><Layers size={15} /> Modules ({state.modules.length})</button>
+          </nav>
+
+          <div className="undo-redo-toolbar desktop-nav">
+            <div className="theme-toggle">
+              <button className={"theme-btn" + (state.theme === "cyberpunk" ? " active" : "")} onClick={() => setTheme("cyberpunk")} title="Cyberpunk Dark"><Sparkles size={14} /></button>
+              <button className={"theme-btn" + (state.theme === "midnight" ? " active" : "")} onClick={() => setTheme("midnight")} title="Midnight Blue"><Moon size={14} /></button>
+              <button className={"theme-btn" + (state.theme === "light" ? " active" : "")} onClick={() => setTheme("light")} title="Light Academic"><Sun size={14} /></button>
+            </div>
+
+            <div className="history-group">
+              <button className="history-btn" onClick={undo} disabled={historyPast.length === 0} title="Undo (Cmd+Z / Ctrl+Z)">
+                <Undo2 size={15} />
+                {historyPast.length > 0 && <span className="history-count">{historyPast.length}</span>}
+              </button>
+              <button className="history-btn" onClick={redo} disabled={historyFuture.length === 0} title="Redo (Cmd+Shift+Z / Ctrl+Y)">
+                <Redo2 size={15} />
+                {historyFuture.length > 0 && <span className="history-count">{historyFuture.length}</span>}
+              </button>
+            </div>
+
+            <div className="action-group">
+              <button className="history-btn glow-border" onClick={exportBackupJSON} title="Backup Data to JSON">
+                <Download size={14} /> Backup
+              </button>
+              <button className="history-btn" onClick={() => fileInputRef.current?.click()} title="Restore Data from JSON">
+                <Upload size={14} /> Restore
+              </button>
+              <button className="history-btn" onClick={exportCSVReport} title="Export CSV Report">
+                <FileSpreadsheet size={14} /> CSV
+              </button>
+              <button className="history-btn" onClick={loadDemoData} title="Load Sample Demo Data">
+                <Sparkles size={14} /> Demo
+              </button>
+              <button className="history-btn danger" onClick={clearAllData} title="Clear All Data & Reset">
+                <Trash2 size={14} /> Reset
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Hamburger Trigger */}
+          <button className="mobile-menu-trigger icon-btn" onClick={() => setMobileMenuOpen(true)}>
+            <MenuIcon size={22} />
+          </button>
         </div>
-
-        {/* Header Navigation Tabs - Always Visible on All Screens */}
-        <nav className="navtabs">
-          <button className={"tab" + (tab === "dashboard" ? " active" : "")} onClick={() => setTab("dashboard")}><LayoutDashboard size={15} /> Dashboard</button>
-          <button className={"tab" + (tab === "week" ? " active" : "")} onClick={() => setTab("week")}><CalendarClock size={15} /> Week View</button>
-          <button className={"tab" + (tab === "analytics" ? " active" : "")} onClick={() => setTab("analytics")}><BarChart3 size={15} /> Analytics & Goal Simulator</button>
-          <button className={"tab" + (tab === "deadlines" ? " active" : "")} onClick={() => setTab("deadlines")}><Calendar size={15} /> Exams ({(state.deadlines || []).filter(d => !d.done).length})</button>
-          <button className={"tab" + (tab === "modules" ? " active" : "")} onClick={() => setTab("modules")}><Layers size={15} /> Modules ({state.modules.length})</button>
-        </nav>
-
-        <div className="undo-redo-toolbar desktop-nav">
-          <div className="theme-toggle">
-            <button className={"theme-btn" + (state.theme === "cyberpunk" ? " active" : "")} onClick={() => setTheme("cyberpunk")} title="Cyberpunk Dark"><Sparkles size={14} /></button>
-            <button className={"theme-btn" + (state.theme === "midnight" ? " active" : "")} onClick={() => setTheme("midnight")} title="Midnight Blue"><Moon size={14} /></button>
-            <button className={"theme-btn" + (state.theme === "light" ? " active" : "")} onClick={() => setTheme("light")} title="Light Academic"><Sun size={14} /></button>
-          </div>
-
-          <div className="history-group">
-            <button className="history-btn" onClick={undo} disabled={historyPast.length === 0} title="Undo (Cmd+Z / Ctrl+Z)">
-              <Undo2 size={15} />
-              {historyPast.length > 0 && <span className="history-count">{historyPast.length}</span>}
-            </button>
-            <button className="history-btn" onClick={redo} disabled={historyFuture.length === 0} title="Redo (Cmd+Shift+Z / Ctrl+Y)">
-              <Redo2 size={15} />
-              {historyFuture.length > 0 && <span className="history-count">{historyFuture.length}</span>}
-            </button>
-          </div>
-
-          <div className="action-group">
-            <button className="history-btn glow-border" onClick={exportBackupJSON} title="Backup Data to JSON">
-              <Download size={14} /> Backup
-            </button>
-            <button className="history-btn" onClick={() => fileInputRef.current?.click()} title="Restore Data from JSON">
-              <Upload size={14} /> Restore
-            </button>
-            <button className="history-btn" onClick={exportCSVReport} title="Export CSV Report">
-              <FileSpreadsheet size={14} /> CSV
-            </button>
-            <button className="history-btn" onClick={loadDemoData} title="Load Sample Demo Data">
-              <Sparkles size={14} /> Demo
-            </button>
-            <button className="history-btn danger" onClick={clearAllData} title="Clear All Data & Reset">
-              <Trash2 size={14} /> Reset
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Hamburger Trigger */}
-        <button className="mobile-menu-trigger icon-btn" onClick={() => setMobileMenuOpen(true)}>
-          <MenuIcon size={22} />
-        </button>
       </header>
 
       {/* Mobile Slide-Out Side Navigation Drawer */}
@@ -2358,12 +2360,28 @@ body { position: relative; overflow-x: hidden; overflow-y: auto; }
 .spin { animation: spin 1s linear infinite; color: #7c5cff; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* Header Navigation - Floating Glassmorphism Toolbar */
+/* Header Navigation - Full Width Top Bar with Centered Inner Column */
 .header {
-  display: flex; align-items: center; justify-content: space-between; padding: 10px 18px; width: 100%; gap: 12px;
-  background: rgba(10, 13, 28, 0.94); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; margin-bottom: 20px;
-  backdrop-filter: blur(24px); position: sticky; top: 12px; z-index: 40; transition: all 0.3s ease; flex-wrap: wrap;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  background: rgba(10, 13, 28, 0.94);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  transition: all 0.3s ease;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .brand { display: flex; align-items: center; gap: 8px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px; color: #ffffff; flex-shrink: 0; }
@@ -2490,8 +2508,8 @@ body { position: relative; overflow-x: hidden; overflow-y: auto; }
 }
 @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-/* Clean Container within Margined Outer Frame */
-.container { width: 100%; max-width: 100%; margin: 0; padding: 0; }
+/* Perfectly Centered Page Container for All Content */
+.container { width: 100%; max-width: 1400px; margin: 0 auto !important; padding: 24px 24px 40px; }
 .margin-bottom { margin-bottom: 24px; }
 .margin-top { margin-top: 18px; }
 
